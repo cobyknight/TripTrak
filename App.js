@@ -42,19 +42,19 @@ export default function App() {
       <View style={styles.bottomBar}>
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={handleSearch}>
-            <Image source={require('./assets/search_button.png')} style={styles.buttonImage} />
+            <Image source={require('./assets/search.png')} style={styles.buttonImage} />
             <Text>Search</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={handleFavorites}>
-            <Image source={require('./assets/favorite_button.jpg')} style={styles.buttonImage} />
+            <Image source={require('./assets/favorites.png')} style={styles.buttonImage} />
             <Text>Favorites</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={handleProfile}>
-            <Image source={require('./assets/profile_button.png')} style={styles.buttonImage} />
+            <Image source={require('./assets/profile.png')} style={styles.buttonImage} />
             <Text>Profile</Text>
           </TouchableOpacity>
         </View>
@@ -68,14 +68,16 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'top',
+    marginTop: 150
   },
   logo: {
     width: 200,
     height: 200,
-    marginBottom: 40,
   },
   searchContainer: {
+    width: 200,
+    height: 200,
     alignItems: 'center',
   },
   searchInput: {
@@ -95,7 +97,7 @@ const styles = StyleSheet.create({
   },
   bottomBar: {
     position: 'absolute',
-    bottom: 0,
+    bottom: 10,
     left: 0,
     right: 0,
     backgroundColor: '#F6F6F6',
@@ -103,7 +105,7 @@ const styles = StyleSheet.create({
     borderTopColor: '#e0e0e0',
     flexDirection: 'row',
     justifyContent: 'space-around',
-    padding: 10,
+    padding: 25,
   },
   buttonContainer: {
     flex: 1,

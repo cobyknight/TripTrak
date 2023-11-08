@@ -1,11 +1,10 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-const Favorites = () => {
+function Favorites({ navigation }) {
   return (
     <View>
       <Text>This is the Favorites page.</Text>
-      {/* Add your content for the Favorites page here */}
     </View>
   );
 };

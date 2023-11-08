@@ -1,17 +1,27 @@
-import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
+import React from "react";
+import { StatusBar } from "expo-status-bar";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Image,
+} from "react-native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import Favorites from "./favoritespage";
+import Profile from "./profilepage";
+import Search from "./searchpage";
 
-import Favorites from './favorites';
-import Profile from './profile';
-
-export default function App() {
+/*export default function App() {
   const handleSearch = () => {
     // Handle the search functionality here
   };
 
   const handleFavorites = () => {
-    // Handle the favorites functionality here
+    //goto ./favorites.js
   };
 
   const handleProfile = () => {
@@ -38,7 +48,7 @@ export default function App() {
         </TouchableOpacity>
       </View>
 
-      {/* Bottom bar with three buttons */}
+      { // Bottom bar with three buttons }
       <View style={styles.bottomBar}>
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={handleSearch}>
@@ -61,15 +71,76 @@ export default function App() {
       </View>
     </View>
   );
+}*/
+
+const Tab = createBottomTabNavigator();
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen
+          name="Search"
+          component={Search}
+          options={{
+            tabBarLabel: "Search",
+            tabBarIcon: ({ focused }) => (
+              <Image
+                source={
+                  focused
+                    ? require("./assets/search.png")
+                    : require("./assets/search.png")
+                }
+                style={{ width: 24, height: 24 }}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Favorites"
+          component={Favorites}
+          options={{
+            tabBarLabel: "Favorites",
+            tabBarIcon: ({ focused }) => (
+              <Image
+                source={
+                  focused
+                    ? require("./assets/favorites.png")
+                    : require("./assets/favorites.png")
+                }
+                style={{ width: 24, height: 24 }}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Profile"
+          component={Profile}
+          options={{
+            tabBarLabel: "Profile",
+            tabBarIcon: ({ focused }) => (
+              <Image
+                source={
+                  focused
+                    ? require("./assets/profile.png")
+                    : require("./assets/profile.png")
+                }
+                style={{ width: 24, height: 24 }}
+              />
+            ),
+          }}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'top',
-    marginTop: 150
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "top",
+    marginTop: 150,
   },
   logo: {
     width: 200,
@@ -78,45 +149,45 @@ const styles = StyleSheet.create({
   searchContainer: {
     width: 200,
     height: 200,
-    alignItems: 'center',
+    alignItems: "center",
   },
   searchInput: {
     width: 300,
     padding: 10,
     borderRadius: 10,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: "#f0f0f0",
     marginBottom: 10,
   },
   searchButton: {
     width: 100,
     height: 40,
-    backgroundColor: '#FFA660',
+    backgroundColor: "#FFA660",
     borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   bottomBar: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 10,
     left: 0,
     right: 0,
-    backgroundColor: '#F6F6F6',
+    backgroundColor: "#F6F6F6",
     borderTopWidth: 1,
-    borderTopColor: '#e0e0e0',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    borderTopColor: "#e0e0e0",
+    flexDirection: "row",
+    justifyContent: "space-around",
     padding: 25,
   },
   buttonContainer: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: "center",
   },
   button: {
-    alignItems: 'center',
+    alignItems: "center",
   },
   buttonImage: {
-    width: 30,
-    height: 30,
+    width: 20,
+    height: 20,
     marginBottom: 5,
   },
 });

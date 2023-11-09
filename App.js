@@ -1,193 +1,23 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-  Image,
-} from "react-native";
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import Favorites from "./favoritespage";
-import Profile from "./profilepage";
-import Search from "./searchpage";
+import MainPage from "./mainpage";
+import TabNavigator from "./navbar";
 
-/*export default function App() {
-  const handleSearch = () => {
-    // Handle the search functionality here
-  };
+const Stack = createStackNavigator();
 
-  const handleFavorites = () => {
-    //goto ./favorites.js
-  };
 
-  const handleProfile = () => {
-    // Handle the profile functionality here
-  };
-
-  return (
-    <View style={styles.container}>
-      <Image
-        source={require('./assets/TripTrak_Logo.png')}
-        style={styles.logo}
-      />
-
-      <View style={styles.searchContainer}>
-        <TextInput
-          style={styles.searchInput}
-          placeholder="Enter a location"
-        />
-        <TouchableOpacity
-          style={styles.searchButton}
-          onPress={handleSearch}
-        >
-          <Text style={{ color: 'white' }}>Search</Text>
-        </TouchableOpacity>
-      </View>
-
-      { // Bottom bar with three buttons }
-      <View style={styles.bottomBar}>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={handleSearch}>
-            <Image source={require('./assets/search.png')} style={styles.buttonImage} />
-            <Text>Search</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={handleFavorites}>
-            <Image source={require('./assets/favorites.png')} style={styles.buttonImage} />
-            <Text>Favorites</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={handleProfile}>
-            <Image source={require('./assets/profile.png')} style={styles.buttonImage} />
-            <Text>Profile</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </View>
-  );
-}*/
-
-const Tab = createBottomTabNavigator();
+/// Stack screen shows "Search" on top of all pages, figure out a way to only show that on Search Page
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen
-          name="Search"
-          component={Search}
-          options={{
-            tabBarLabel: "Search",
-            tabBarIcon: ({ focused }) => (
-              <Image
-                source={
-                  focused
-                    ? require("./assets/search.png")
-                    : require("./assets/search.png")
-                }
-                style={{ width: 24, height: 24 }}
-              />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Favorites"
-          component={Favorites}
-          options={{
-            tabBarLabel: "Favorites",
-            tabBarIcon: ({ focused }) => (
-              <Image
-                source={
-                  focused
-                    ? require("./assets/favorites.png")
-                    : require("./assets/favorites.png")
-                }
-                style={{ width: 24, height: 24 }}
-              />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Profile"
-          component={Profile}
-          options={{
-            tabBarLabel: "Profile",
-            tabBarIcon: ({ focused }) => (
-              <Image
-                source={
-                  focused
-                    ? require("./assets/profile.png")
-                    : require("./assets/profile.png")
-                }
-                style={{ width: 24, height: 24 }}
-              />
-            ),
-          }}
-        />
-      </Tab.Navigator>
+      <Stack.Navigator initialRouteName=" ">
+        <Stack.Screen name=" " component={MainPage} />
+        <Stack.Screen name="Search" component={TabNavigator} /> 
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "top",
-    marginTop: 150,
-  },
-  logo: {
-    width: 200,
-    height: 200,
-  },
-  searchContainer: {
-    width: 200,
-    height: 200,
-    alignItems: "center",
-  },
-  searchInput: {
-    width: 300,
-    padding: 10,
-    borderRadius: 10,
-    backgroundColor: "#f0f0f0",
-    marginBottom: 10,
-  },
-  searchButton: {
-    width: 100,
-    height: 40,
-    backgroundColor: "#FFA660",
-    borderRadius: 20,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  bottomBar: {
-    position: "absolute",
-    bottom: 10,
-    left: 0,
-    right: 0,
-    backgroundColor: "#F6F6F6",
-    borderTopWidth: 1,
-    borderTopColor: "#e0e0e0",
-    flexDirection: "row",
-    justifyContent: "space-around",
-    padding: 25,
-  },
-  buttonContainer: {
-    flex: 1,
-    alignItems: "center",
-  },
-  button: {
-    alignItems: "center",
-  },
-  buttonImage: {
-    width: 20,
-    height: 20,
-    marginBottom: 5,
-  },
-});

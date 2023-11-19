@@ -8,9 +8,16 @@ import Search from "./searchpage";
 const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      tabBarOptions={{
+        centered: true, // This will center the tabs
+        labelStyle: {
+          textAlign: "center",
+        },
+      }}
+    >
       <Tab.Screen
-        name="[Enter City Location Here]"
+        name=" "
         component={Search}
         options={{
           tabBarLabel: "Search",

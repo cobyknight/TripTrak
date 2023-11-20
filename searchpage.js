@@ -1,152 +1,157 @@
 import * as React from "react";
-import { StyleSheet, View, Text, Image, Pressable } from "react-native";
+import { StyleSheet, View, Text, Image, Pressable, ScrollView } from "react-native";
 import { Border, Color, FontSize, FontFamily } from "./GlobalStyles";
+import { useNavigation } from '@react-navigation/native'; // Import useNavigation
+import Restaurant from "./Restaurant";
 
 const SearchPageRestaurant = () => {
+  const navigation = useNavigation(); // Initialize navigation
+
+  const handlePress = () => {
+    navigation.navigate('Restaurant'); // Navigate to the 'Restaurant' screen
+  };
+
   return (
-    <View style={styles.searchPageRestaurant}>
-      <View style={[styles.rectangleParent, styles.rectangleParentLayout]}>
-        <View style={[styles.groupChild, styles.groupLayout]} />
-      </View>
-      <Pressable
-        style={[styles.rectangleParent, styles.rectangleParentLayout]}
-        onPress={() => {}}
-      >
-        <View style={[styles.groupInner, styles.groupLayout]} />
-        <Text style={[styles.text1, styles.textTypo]}>$</Text>
-        <Text style={[styles.tioJavisFresh1, styles.tioTypo]}>
-          Highland Coffees
+    <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+      <View style={styles.searchPageRestaurant}>
+
+        <Text style={styles.currentDestinationText}>
+          Destination: Baton Rouge, LA
         </Text>
-        <View style={[styles.stars, styles.starsFlexBox]}>
+
+        {/* Each restaurant item */}
+        
+        <View style={[styles.rectangleParent, styles.rectangleParentLayout]}>
+          <View style={[styles.groupChild, styles.groupLayout]} />
+        </View>
+        <Pressable
+          style={[styles.rectangleParent, styles.rectangleParentLayout]}
+          onPress={handlePress} // Use the handlePress function
+        >
+          <View style={[styles.groupInner, styles.groupLayout]} />
+          <Text style={[styles.text1, styles.textTypo]}>$</Text>
+          <Text style={[styles.tioJavisFresh1, styles.tioTypo]}>Highland Coffees</Text>
+          <View style={[styles.stars, styles.starsFlexBox]}>
+            <Image
+              style={styles.starIconLayout}
+              resizeMode="cover"
+              source={require('./assets/4.5_star.png')}
+            />
+          </View>
           <Image
-            style={styles.starIconLayout}
+            style={styles.groupItemPosition}
             resizeMode="cover"
-            source={require("./assets/4.5_star.png")}
+            source={require('./assets/highland_coffees.png')}
+          />
+        </Pressable>
+        <View style={[styles.rectangleContainer, styles.rectangleParentLayout]}>
+          <View style={[styles.groupInner, styles.groupLayout]} />
+          <Text style={[styles.text2, styles.textTypo]}>$$$</Text>
+          <Text
+            style={[styles.tioJavisFresh1, styles.tioTypo]}
+          >{`City Slice Pizza and Pints
+  `}</Text>
+          <View style={[styles.stars, styles.starsFlexBox]}>
+            <Image
+              style={styles.starIconLayout}
+              resizeMode="cover"
+              source={require("./assets/4_star.png")}
+            />
+          </View>
+          <Image
+            style={styles.groupItemPosition}
+            resizeMode="cover"
+            source={require("./assets/city_slice.png")}
           />
         </View>
-        <Image
-          style={styles.groupItemPosition}
-          resizeMode="cover"
-          source={require("./assets/highland_coffees.png")}
-        />
-      </Pressable>
-      <View style={[styles.rectangleContainer, styles.rectangleParentLayout]}>
-        <View style={[styles.groupInner, styles.groupLayout]} />
-        <Text style={[styles.text2, styles.textTypo]}>$$$</Text>
+        <View style={[styles.groupView, styles.rectangleParentLayout]}>
+          <View style={[styles.groupInner, styles.groupLayout]} />
+          <Text style={[styles.text, styles.textTypo]}>$$</Text>
+          <Text style={[styles.tioJavisFresh1, styles.tioTypo]}>{`The Chimes
+  `}</Text>
+          <View style={[styles.stars, styles.starsFlexBox]}>
+            <Image
+              style={styles.starIconLayout}
+              resizeMode="cover"
+              source={require("./assets/4.5_star.png")}
+            />
+          </View>
+          <Image
+            style={[styles.groupItem, styles.groupItemPosition]}
+            resizeMode="cover"
+            source={require("./assets/chimes.png")}
+          />
+        </View>
+        <View style={[styles.rectangleParent1, styles.rectangleParentLayout]}>
+          <View style={[styles.groupInner, styles.groupLayout]} />
+          <Text
+            style={[styles.tioJavisFresh4, styles.tioTypo]}
+          >{`Tio Javi's Bar & Grill
+  `}</Text>
+          <View style={[styles.stars, styles.starsFlexBox]}>
+            <Image
+              style={styles.starIconLayout}
+              resizeMode="cover"
+              source={require("./assets/4.5_star.png")}
+            />
+          </View>
+          <Image
+            style={[styles.groupItem, styles.groupItemPosition]}
+            resizeMode="cover"
+            source={require("./assets/tio_javis.png")}
+          />
+          <Text style={[styles.text, styles.textTypo]}>$$</Text>
+        </View>
+        <View style={[styles.rectangleParent2, styles.rectangleParentLayout]}>
+          <View style={[styles.groupInner, styles.groupLayout]} />
+          <Text style={[styles.text, styles.textTypo]}>$$</Text>
+          <Text style={[styles.tioJavisFresh1, styles.tioTypo]}>{`Olive or Twist
+  `}</Text>
+          <View style={[styles.stars, styles.starsFlexBox]}>
+            <Image
+              style={styles.starIconLayout}
+              resizeMode="cover"
+              source={require("./assets/4_star.png")}
+            />
+          </View>
+          <Image
+            style={styles.groupItemPosition}
+            resizeMode="cover"
+            source={require("./assets/olive_twist.png")}
+          />
+        </View>
         <Text
-          style={[styles.tioJavisFresh1, styles.tioTypo]}
-        >{`City Slice Pizza and Pints
-`}</Text>
-        <View style={[styles.stars, styles.starsFlexBox]}>
+          style={[styles.dontSeeYour, styles.emailUsATypo]}
+        >{`Don’t see your business or want to advertise? 
+  `}</Text>
+        <Pressable
+          style={[styles.emailUsARequestWrapper, styles.starsFlexBox]}
+          onPress={() => {}}
+        >
+          <Text style={[styles.emailUsA, styles.emailUsATypo]}>
+            Email us a request!
+          </Text>
+        </Pressable>
+        <View
+          style={[styles.searchPageRestaurantChild3, styles.searchChildLayout]}
+        />
+        <Image
+          style={[styles.lineIcon, styles.lineIconLayout]}
+          resizeMode="cover"
+          source={require("./assets/line_2.png")}
+        />
+        <Pressable
+          style={[styles.streamlinehqNatureEcologyWo, styles.streamlinehqLayout]}
+          onPress={() => {}}
+        >
           <Image
-            style={styles.starIconLayout}
+            style={[styles.icon, styles.iconLayout1]}
             resizeMode="cover"
-            source={require("./assets/4_star.png")}
+            source={require("./assets/ellipse_3.png")}
           />
-        </View>
-        <Image
-          style={styles.groupItemPosition}
-          resizeMode="cover"
-          source={require("./assets/city_slice.png")}
-        />
+        </Pressable>
       </View>
-      <View style={[styles.groupView, styles.rectangleParentLayout]}>
-        <View style={[styles.groupInner, styles.groupLayout]} />
-        <Text style={[styles.text, styles.textTypo]}>$$</Text>
-        <Text style={[styles.tioJavisFresh1, styles.tioTypo]}>{`The Chimes
-`}</Text>
-        <View style={[styles.stars, styles.starsFlexBox]}>
-          <Image
-            style={styles.starIconLayout}
-            resizeMode="cover"
-            source={require("./assets/4.5_star.png")}
-          />
-        </View>
-        <Image
-          style={[styles.groupItem, styles.groupItemPosition]}
-          resizeMode="cover"
-          source={require("./assets/chimes.png")}
-        />
-      </View>
-      <View style={[styles.rectangleParent1, styles.rectangleParentLayout]}>
-        <View style={[styles.groupInner, styles.groupLayout]} />
-        <Text
-          style={[styles.tioJavisFresh4, styles.tioTypo]}
-        >{`Tio Javi's Bar & Grill
-`}</Text>
-        <View style={[styles.stars, styles.starsFlexBox]}>
-          <Image
-            style={styles.starIconLayout}
-            resizeMode="cover"
-            source={require("./assets/4.5_star.png")}
-          />
-        </View>
-        <Image
-          style={[styles.groupItem, styles.groupItemPosition]}
-          resizeMode="cover"
-          source={require("./assets/tio_javis.png")}
-        />
-        <Text style={[styles.text, styles.textTypo]}>$$</Text>
-      </View>
-      <View style={[styles.rectangleParent2, styles.rectangleParentLayout]}>
-        <View style={[styles.groupInner, styles.groupLayout]} />
-        <Text style={[styles.text, styles.textTypo]}>$$</Text>
-        <Text style={[styles.tioJavisFresh1, styles.tioTypo]}>{`Olive or Twist
-`}</Text>
-        <View style={[styles.stars, styles.starsFlexBox]}>
-          <Image
-            style={styles.starIconLayout}
-            resizeMode="cover"
-            source={require("./assets/4_star.png")}
-          />
-        </View>
-        <Image
-          style={styles.groupItemPosition}
-          resizeMode="cover"
-          source={require("./assets/olive_twist.png")}
-        />
-      </View>
-      <Text
-        style={[styles.dontSeeYour, styles.emailUsATypo]}
-      >{`Don’t see your business or want to advertise? 
-`}</Text>
-      <Pressable
-        style={[styles.emailUsARequestWrapper, styles.starsFlexBox]}
-        onPress={() => {}}
-      >
-        <Text style={[styles.emailUsA, styles.emailUsATypo]}>
-          Email us a request!
-        </Text>
-      </Pressable>
-      <View
-        style={[styles.searchPageRestaurantChild3, styles.searchChildLayout]}
-      />
-      <Image
-        style={[styles.lineIcon, styles.lineIconLayout]}
-        resizeMode="cover"
-        source={require("./assets/line_2.png")}
-      />
-      <Pressable
-        style={[styles.streamlinehqNatureEcologyWo, styles.streamlinehqLayout]}
-        onPress={() => {}}
-      >
-        <Image
-          style={[styles.icon, styles.iconLayout1]}
-          resizeMode="cover"
-          source={require("./assets/ellipse_3.png")}
-        />
-      </Pressable>
-      <Image
-        style={[
-          styles.streamlinehqFoodKitchenwareIcon,
-          styles.streamlinehqLayout,
-        ]}
-        resizeMode="cover"
-        source={require("./assets/ellipse_4.png")}
-      />
-      <View style={styles.searchPageRestaurantChild5} />
-      <Image style={[styles.groupIcon]} resizeMode="cover" />
-    </View>
+    </ScrollView>
   );
 };
 
@@ -154,15 +159,16 @@ const styles = StyleSheet.create({
   rectangleParentLayout: {
     height: 94,
     width: 341,
-    left: 24,
+    left:"50%",
+    marginLeft: -192,
     position: "absolute",
   },
   groupLayout: {
     borderRadius: Border.br_8xs,
     left: 0,
     top: 0,
-    height: 94,
-    width: 341,
+    height: 100,
+    width: 380,
     position: "absolute",
   },
   batonRougeLaFlexBox: {
@@ -192,7 +198,7 @@ const styles = StyleSheet.create({
     height: 75,
     width: 90,
     left: 6,
-    top: 11,
+    top: 10,
     position: "absolute",
   },
   tioTypo: {
@@ -233,7 +239,7 @@ const styles = StyleSheet.create({
   streamlinehqLayout: {
     height: 70,
     width: 70,
-    top: 150,
+    top: 5,
     position: "absolute",
   },
   iconLayout1: {
@@ -290,7 +296,7 @@ const styles = StyleSheet.create({
     borderRadius: Border.br_11xl,
   },
   rectangleParent: {
-    top: 282,
+    top: 90,
   },
   groupInner: {
     backgroundColor: Color.colorWhitesmoke_100,
@@ -305,19 +311,19 @@ const styles = StyleSheet.create({
     color: "#ff0022",
   },
   rectangleContainer: {
-    top: 513,
+    top: 420,
   },
   groupView: {
-    top: 398,
+    top: 310,
   },
   tioJavisFresh4: {
     left: 113,
   },
   rectangleParent1: {
-    top: 758,
+    top: 200,
   },
   rectangleParent2: {
-    top: 637,
+    top: 530,
   },
   searchPageRestaurantChild: {
     top: 647,
@@ -335,7 +341,7 @@ const styles = StyleSheet.create({
     top: 292,
   },
   dontSeeYour: {
-    top: 891,
+    top: 650,
     left: 28,
     width: 339,
     height: 18,
@@ -347,7 +353,7 @@ const styles = StyleSheet.create({
     color: Color.colorDarkcyan,
   },
   emailUsARequestWrapper: {
-    top: 899,
+    top: 670,
     left: 18,
     alignItems: "center",
     justifyContent: "center",
@@ -356,15 +362,8 @@ const styles = StyleSheet.create({
   searchPageRestaurantChild2: {
     top: 768,
   },
-  searchPageRestaurantChild3: {
-    height: 277,
-    top: 0,
-    position: "absolute",
-    backgroundColor: Color.colorWhite,
-    width: 390,
-  },
   lineIcon: {
-    top: 259,
+    top: 50,
     left: 46,
     width: 296,
   },
@@ -378,7 +377,8 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   streamlinehqNatureEcologyWo: {
-    left: 243,
+    left: "50%",
+    marginLeft: -176,
   },
   streamlinehqFoodKitchenwareIcon: {
     left: 114,
@@ -484,6 +484,25 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     width: "100%",
     backgroundColor: Color.colorWhite,
+  },
+  currentDestinationText: {
+    textAlign: "center",
+    fontSize: FontSize.size_base,
+    fontFamily: FontFamily.poppinsSemiBold,
+    color: Color.colorBlack,
+    marginTop: 23,
+    marginBottom: 20,
+    left: 15,
+  },
+  rankText: {
+    fontSize: FontSize.size_mini,
+    fontFamily: FontFamily.poppinsSemiBold,
+    fontWeight: "600",
+    textAlign: "left",
+    color: Color.colorBlack,
+    position: "absolute",
+    left: 6, // Adjust as needed for proper alignment
+    top: 14, // Adjust as needed for proper alignment
   },
 });
 

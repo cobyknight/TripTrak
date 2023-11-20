@@ -1,12 +1,23 @@
 import * as React from "react";
-import { Image, StyleSheet, View, Text, TouchableOpacity, ScrollView } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  View,
+  Text,
+  Pressable,
+  ScrollView,
+} from "react-native";
 import { Color, FontFamily, FontSize, Border } from "./GlobalStyles";
-
-const handlePress = () => {
-  navigation.navigate("searchpage"); // Navigate to the 'search page' screen
-};
+import { useNavigation } from "@react-navigation/native"; // Import useNavigation
+import searchpage from "./searchpage";
 
 const HighlandCoffeesPage = () => {
+  const navigation = useNavigation();
+
+  const handlePress = () => {
+    navigation.goBack("searchpage"); // Navigate to the 'search page' screen
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.scrollViewContainer}>
       <View style={[styles.highlandCoffeesPage, styles.icon1Layout]}>
@@ -23,11 +34,9 @@ const HighlandCoffeesPage = () => {
           Got a coffee with two extra shots, and it was tasty but weak
         </Text>
         <Text style={[styles.highlandRdBatonContainer, styles.highlandTypo]}>
-          <Text style={styles.text}>{`3350 `}</Text>
           <Text
             style={styles.highlandRdBaton}
-          >{`Highland Rd, Baton Rouge, LA `}</Text>
-          <Text style={styles.text}>70802</Text>
+          >{`3550 Highland Rd, Baton Rouge, LA 70802`}</Text>
         </Text>
         <Text style={[styles.reviews, styles.reviewsTypo]}>Reviews</Text>
         <Text style={[styles.about, styles.aboutTypo]}>About</Text>
@@ -55,8 +64,10 @@ const HighlandCoffeesPage = () => {
             resizeMode="cover"
             source={require("./assets/4_star.png")}
           />
+        </View>
+        <View style={[styles.stars2, styles.starsFlexBox]}>
           <Image
-            style={[styles.starIcon1, styles.starIconLayout]}
+            style={[styles.starIconLayout]}
             resizeMode="cover"
             source={require("./assets/4.5_star.png")}
           />
@@ -64,17 +75,20 @@ const HighlandCoffeesPage = () => {
         <Text style={[styles.highlandCoffees, styles.text2Clr]}>
           Highland Coffees
         </Text>
-        <TouchableOpacity onPress={handlePress}>
-          {/* Replace 'backArrowImage.png' with the path to your back arrow image */}
+        <Pressable
+          style={[styles.rectangleParent, styles.rectangleParentLayout]}
+          onPress={handlePress}
+        >
           <Image
             source={require("./assets/left_arrow.png")}
-            style={{ width: 30, height: 30 }}
+            style={{ width: 60, height: 60, left: 20, top: 50 }}
           />
-        </TouchableOpacity>
+        </Pressable>
+
         <Image
           style={styles.highlandCoffeesPageItem}
           resizeMode="cover"
-          source={require("./assets/heart_liked.png")}
+          source={require("./assets/heart.png")}
         />
         <View style={styles.vectorParent}>
           <Image
@@ -113,33 +127,33 @@ const styles = StyleSheet.create({
     width: 338,
     textAlign: "left",
     color: Color.colorBlack,
-    fontFamily: FontFamily.ponnala,
-    fontSize: FontSize.size_xs,
+    //fontFamily: FontFamily.ponnala,
+    //fontSize: FontSize.size_xs,
     position: "absolute",
   },
   highlandTypo: {
     width: 338,
     textAlign: "left",
     color: Color.colorBlack,
-    fontSize: FontSize.size_xs,
+    //fontSize: FontSize.size_xs,
     left: 23,
     position: "absolute",
   },
   reviewsTypo: {
     height: 36,
     width: 117,
-    fontFamily: FontFamily.poppinsSemiBold,
+    //fontFamily: FontFamily.poppinsSemiBold,
     fontWeight: "600",
-    fontSize: FontSize.size_6xl,
+    //fontSize: FontSize.size_6xl,
     left: 23,
     textAlign: "left",
     color: Color.colorBlack,
     position: "absolute",
   },
   aboutTypo: {
-    fontFamily: FontFamily.poppinsSemiBold,
+    //fontFamily: FontFamily.poppinsSemiBold,
     fontWeight: "600",
-    fontSize: FontSize.size_6xl,
+    //fontSize: FontSize.size_6xl,
     left: 23,
     textAlign: "left",
     color: Color.colorBlack,
@@ -157,7 +171,7 @@ const styles = StyleSheet.create({
   },
   starIconLayout: {
     height: 14,
-    width: 90,
+    width: 92,
   },
   groupLayout: {
     width: 63,
@@ -191,10 +205,10 @@ const styles = StyleSheet.create({
     left: 23,
   },
   text: {
-    fontFamily: FontFamily.pollerOneRegular,
+    //fontFamily: FontFamily.pollerOneRegular,
   },
   highlandRdBaton: {
-    fontFamily: FontFamily.ponnala,
+    //fontFamily: FontFamily.ponnala,
   },
   highlandRdBatonContainer: {
     top: 635,
@@ -219,7 +233,7 @@ const styles = StyleSheet.create({
     top: 403,
     height: 84,
     left: 23,
-    fontFamily: FontFamily.ponnala,
+    //fontFamily: FontFamily.ponnala,
   },
   greatAndRelatively: {
     top: 695,
@@ -230,9 +244,9 @@ const styles = StyleSheet.create({
     left: 274,
     width: 73,
     height: 27,
-    fontSize: FontSize.size_6xl,
+    //fontSize: FontSize.size_6xl,
     color: Color.colorWhite,
-    fontFamily: FontFamily.pollerOneRegular,
+    //fontFamily: FontFamily.pollerOneRegular,
   },
   starIcon1: {
     marginLeft: 4.94,
@@ -251,11 +265,11 @@ const styles = StyleSheet.create({
   },
   highlandCoffees: {
     top: 254,
-    left: 59,
+    left: 45,
     fontSize: 30,
     fontWeight: "800",
-    fontFamily: FontFamily.poppinsExtraBold,
-    width: 273,
+    //fontFamily: FontFamily.poppinsExtraBold,
+    width: 1000,
     height: 43,
   },
   icon1: {
@@ -269,10 +283,10 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   highlandCoffeesPageItem: {
-    top: 53,
+    top: 65,
     left: 321,
-    width: 45,
-    height: 39,
+    width: 33.75,
+    height: 29.25,
     position: "absolute",
   },
   groupChild: {

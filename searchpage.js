@@ -15,10 +15,6 @@ const SearchPageRestaurant = () => {
     <ScrollView contentContainerStyle={styles.scrollViewContainer}>
       <View style={styles.searchPageRestaurant}>
 
-        <Text style={styles.currentDestinationText}>
-          Destination: Baton Rouge, LA
-        </Text>
-
         {/* Each restaurant item */}
         
         <View style={[styles.rectangleParent, styles.rectangleParentLayout]}>
@@ -135,21 +131,6 @@ const SearchPageRestaurant = () => {
         <View
           style={[styles.searchPageRestaurantChild3, styles.searchChildLayout]}
         />
-        <Image
-          style={[styles.lineIcon, styles.lineIconLayout]}
-          resizeMode="cover"
-          source={require("./assets/line_2.png")}
-        />
-        <Pressable
-          style={[styles.streamlinehqNatureEcologyWo, styles.streamlinehqLayout]}
-          onPress={() => {}}
-        >
-          <Image
-            style={[styles.icon, styles.iconLayout1]}
-            resizeMode="cover"
-            source={require("./assets/ellipse_3.png")}
-          />
-        </Pressable>
       </View>
     </ScrollView>
   );
@@ -160,7 +141,7 @@ const styles = StyleSheet.create({
     height: 94,
     width: 341,
     left:"50%",
-    marginLeft: -192,
+    marginLeft: -180,
     position: "absolute",
   },
   groupLayout: {
@@ -168,7 +149,7 @@ const styles = StyleSheet.create({
     left: 0,
     top: 0,
     height: 100,
-    width: 380,
+    width: 360,
     position: "absolute",
   },
   batonRougeLaFlexBox: {
@@ -228,12 +209,6 @@ const styles = StyleSheet.create({
   },
   lineIconLayout: {
     height: 2,
-    position: "absolute",
-  },
-  ellipseIconLayout: {
-    width: 75,
-    top: 168,
-    height: 75,
     position: "absolute",
   },
   streamlinehqLayout: {

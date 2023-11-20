@@ -2,26 +2,27 @@ import React from "react";
 import { View, Text, Image, TextInput, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-
 function MainPage() {
-const navigation = useNavigation();
-const handleButtonPress = () => {
+  const navigation = useNavigation();
+  const handleButtonPress = () => {
     navigation.navigate('Search');
-};
+  };
+
   return (
     <View
       style={{
         flex: 1,
         backgroundColor: "#fff",
         alignItems: "center",
-        justifyContent: "top",
+        justifyContent: "center",
+        paddingBottom: 200, // Added padding to move content down
       }}
     >
       <Image
         source={require("./assets/TripTrak_Logo.png")}
-        style={{ width: 200, height: 200 }}
+        style={{ width: 200, height: 200, marginBottom: 20 }} // Adjusted margin to move the logo down
       />
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <View style={{ justifyContent: "flex-start", alignItems: "center" }}>
         <TextInput
           style={{
             width: 300,
@@ -49,4 +50,5 @@ const handleButtonPress = () => {
     </View>
   );
 }
+
 export default MainPage;

@@ -16,8 +16,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName=" ">
-        <Stack.Screen name=" " component={MainPage} />
-        <Stack.Screen name="Search" component={TabNavigator} /> 
+        <Stack.Screen name=" " component={MainPage} options={{ headerShown: false }} />
+        <Stack.Screen name="Search" component={TabNavigator} options={{ headerShown: false }}/> 
         <Stack.Screen name="HighlandCoffeesPage" component={HighlandCoffeesPage} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>

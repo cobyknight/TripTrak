@@ -21,7 +21,7 @@ const TabNavigator = () => {
         component={Search}
         options={{
           headerShown: false,
-          tabBarLabel: "Search",
+          tabBarLabel: " ",
           tabBarIcon: ({ focused }) => (
             <Image
               source={
@@ -38,6 +38,7 @@ const TabNavigator = () => {
         name="Favorites"
         component={Favorites}
         options={{
+          headerShown: false,
           tabBarLabel: "Favorites",
           tabBarIcon: ({ focused }) => (
             <Image
@@ -55,6 +56,7 @@ const TabNavigator = () => {
         name="Profile"
         component={Profile}
         options={{
+          headerShown: false,
           tabBarLabel: "Profile",
           tabBarIcon: ({ focused }) => (
             <Image

@@ -23,3 +23,25 @@ export const Border = {
   br_11xl: 30,
   br_8xs: 5,
 };
+
+export const FontFamily1 = {
+  poppinsExtraBold: "Poppins-ExtraBold",
+  pollerOneRegular: "PollerOne-Regular",
+  ponnala: "Ponnala",
+  poppinsSemiBold: "Poppins-SemiBold",
+};
+/* font sizes */
+export const FontSize1 = {
+  size_6xl: 25,
+  size_xs: 12,
+};
+/* Colors */
+export const Color1 = {
+  colorWhite: "#fff",
+  colorBlack: "#000",
+};
+/* border radiuses */
+export const Border1 = {
+  br_8xs: 5,
+  br_11xl: 30,
+};

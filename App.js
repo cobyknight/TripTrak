@@ -6,7 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import MainPage from "./mainpage";
 import TabNavigator from "./navbar";
-import Restaurant from "./Restaurant";
+import HighlandCoffeesPage from "./HighlandCoffeesPage";
 
 const Stack = createStackNavigator();
 
@@ -18,7 +18,7 @@ export default function App() {
       <Stack.Navigator initialRouteName=" ">
         <Stack.Screen name=" " component={MainPage} />
         <Stack.Screen name="Search" component={TabNavigator} /> 
-        <Stack.Screen name="Restaurant" component={Restaurant} />
+        <Stack.Screen name="HighlandCoffeesPage" component={HighlandCoffeesPage} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

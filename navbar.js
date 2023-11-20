@@ -20,6 +20,7 @@ const TabNavigator = () => {
         name=" "
         component={Search}
         options={{
+          headerShown: false,
           tabBarLabel: "Search",
           tabBarIcon: ({ focused }) => (
             <Image

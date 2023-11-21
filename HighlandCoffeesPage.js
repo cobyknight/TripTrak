@@ -1,6 +1,6 @@
-import * as React from "react";
+import React, { useState } from 'react';
 import {Image, StyleSheet, View, Text, Pressable, TouchableOpacity} from "react-native";
-import { Color, Border } from "./GlobalStyles";
+import { Color, Border, FontSize } from "./GlobalStyles";
 import { useNavigation } from "@react-navigation/native"; // Import useNavigation
 import searchpage from "./searchpage";
 
@@ -8,103 +8,115 @@ const HighlandCoffeesPage = () => {
   const navigation = useNavigation();
 
   const handlePress = () => {
-    navigation.goBack("searchpage"); // Navigate to the 'search page' screen
+    navigation.goBack("Search"); // Navigate to the 'search page' screen
+  };
+
+  const [isImageOne, setIsImageOne] = useState(true);
+
+  const handleButton = () => {
+    // Toggle the state when the button is pressed
+    setIsImageOne(!isImageOne);
   };
 
   return (
-      <View style={[styles.highlandCoffeesPage, styles.icon1Layout]}>
+    <View style={[styles.highlandCoffeesPage, styles.icon1Layout]}>
+      <Image
+        style={styles.icon}
+        resizeMode="cover"
+        source={require("./assets/background.png")}
+      />
+      <View style={styles.highlandCoffeesPageChild} />
+      <Text style={[styles.theAtmosphereWas, styles.gotACoffeeTypo]}>
+        Atmosphere was great! Roomy and calm.
+      </Text>
+      <Text style={[styles.gotACoffee, styles.gotACoffeeTypo]}>
+        Got a coffee, and it was tasty but weak.
+      </Text>
+      <Text style={[styles.highlandRdBatonContainer, styles.highlandTypo]}>
+        <Text
+          style={styles.highlandRdBaton}
+        >{`3550 Highland Rd, Baton Rouge, LA 70802`}</Text>
+      </Text>
+      <Text style={[styles.reviews, styles.reviewsTypo]}>Reviews</Text>
+      <Text style={[styles.about, styles.aboutTypo]}>About</Text>
+      <Text style={[styles.photos, styles.aboutTypo]}>Photos</Text>
+      <Text style={[styles.address, styles.reviewsTypo]}>Address</Text>
+      <Text style={[styles.highlandCoffeesOffers, styles.highlandTypo]}>
+        Highland Coffees offers distinctive coffees roasted right in the shop,
+        fine loose teas, exquisite pastries, tasty specialty drinks, and
+        attractive retail items designed with customer enjoyment as its focus.
+      </Text>
+      <Text style={[styles.greatAndRelatively, styles.gotACoffeeTypo]}>
+        Great and relatively inexpensive coffee!
+      </Text>
+      <Text style={[styles.text2, styles.text2Clr]}>+10</Text>
+      <View style={[styles.stars, styles.starsFlexBox]}>
         <Image
-          style={styles.icon}
+          style={styles.starIconLayout}
           resizeMode="cover"
-          source={require("./assets/background.png")}
+          source={require("./assets/5_star.png")}
         />
-        <View style={styles.highlandCoffeesPageChild} />
-        <Text style={[styles.theAtmosphereWas, styles.gotACoffeeTypo]}>
-          Atmosphere was great! Roomy and calm.
-        </Text>
-        <Text style={[styles.gotACoffee, styles.gotACoffeeTypo]}>
-          Got a coffee, and it was tasty but weak.
-        </Text>
-        <Text style={[styles.highlandRdBatonContainer, styles.highlandTypo]}>
-          <Text
-            style={styles.highlandRdBaton}
-          >{`3550 Highland Rd, Baton Rouge, LA 70802`}</Text>
-        </Text>
-        <Text style={[styles.reviews, styles.reviewsTypo]}>Reviews</Text>
-        <Text style={[styles.about, styles.aboutTypo]}>About</Text>
-        <Text style={[styles.photos, styles.aboutTypo]}>Photos</Text>
-        <Text style={[styles.address, styles.reviewsTypo]}>Address</Text>
-        <Text style={[styles.highlandCoffeesOffers, styles.highlandTypo]}>
-          Highland Coffees offers distinctive coffees roasted right in the shop,
-          fine loose teas, exquisite pastries, tasty specialty drinks, and
-          attractive retail items designed with customer enjoyment as its focus.
-        </Text>
-        <Text style={[styles.greatAndRelatively, styles.gotACoffeeTypo]}>
-          Great and relatively inexpensive coffee!
-        </Text>
-        <Text style={[styles.text2, styles.text2Clr]}>+10</Text>
-        <View style={[styles.stars, styles.starsFlexBox]}>
-          <Image
-            style={styles.starIconLayout}
-            resizeMode="cover"
-            source={require("./assets/5_star.png")}
-          />
-        </View>
-        <View style={[styles.stars1, styles.starsFlexBox]}>
-          <Image
-            style={styles.starIconLayout}
-            resizeMode="cover"
-            source={require("./assets/4_star.png")}
-          />
-        </View>
-        <View style={[styles.stars2, styles.starsFlexBox]}>
-          <Image
-            style={[styles.starIconLayout]}
-            resizeMode="cover"
-            source={require("./assets/4.5_star.png")}
-          />
-        </View>
-        <Text style={[styles.highlandCoffees, styles.text2Clr]}>
-          Highland Coffees
-        </Text>
-        <Pressable
-          style={[styles.rectangleParent, styles.rectangleParentLayout]}
-          onPress={handlePress}
-        >
-          <Image
-            source={require("./assets/left_arrow.png")}
-            style={{ width: 60, height: 60, left: 20, top: 50 }}
-          />
-        </Pressable>
-
-        <Image
-          style={styles.highlandCoffeesPageItem}
-          resizeMode="cover"
-          source={require("./assets/heart.png")}
-        />
-        <View style={styles.vectorParent}>
-          <Image
-            style={[styles.groupChild, styles.groupLayout]}
-            resizeMode="cover"
-            source={require("./assets/Photo1.png")}
-          />
-          <Image
-            style={[styles.groupItem, styles.groupLayout]}
-            resizeMode="cover"
-            source={require("./assets/Photo2.png")}
-          />
-          <Image
-            style={[styles.groupInner, styles.groupLayout]}
-            resizeMode="cover"
-            source={require("./assets/Photo3.png")}
-          />
-          <Image
-            style={[styles.rectangleIcon, styles.groupLayout]}
-            resizeMode="cover"
-            source={require("./assets/Photo4.png")}
-          />
-        </View>
       </View>
+      <View style={[styles.stars1, styles.starsFlexBox]}>
+        <Image
+          style={styles.starIconLayout}
+          resizeMode="cover"
+          source={require("./assets/4_star.png")}
+        />
+      </View>
+      <View style={[styles.stars2, styles.starsFlexBox]}>
+        <Image
+          style={[styles.starIconLayout]}
+          resizeMode="cover"
+          source={require("./assets/4.5_star.png")}
+        />
+      </View>
+      <Text style={[styles.highlandCoffees, styles.text2Clr]}>
+        Highland Coffees
+      </Text>
+      <Pressable
+        style={[styles.rectangleParent, styles.rectangleParentLayout]}
+        onPress={handlePress}
+      >
+        <Image
+          source={require("./assets/left_arrow.png")}
+          style={{ width: 60, height: 60, left: 20, top: 50 }}
+        />
+      </Pressable>
+      <TouchableOpacity onPress={handleButton}>
+        <Image
+          source={
+            isImageOne
+              ? require("./assets/heart.png")
+              : require("./assets/heart_unselected.png")
+          }
+          style={styles.highlandCoffeesPageItem}
+        />
+      </TouchableOpacity>
+
+      <View style={styles.vectorParent}>
+        <Image
+          style={[styles.groupChild, styles.groupLayout]}
+          resizeMode="cover"
+          source={require("./assets/Photo1.png")}
+        />
+        <Image
+          style={[styles.groupItem, styles.groupLayout]}
+          resizeMode="cover"
+          source={require("./assets/Photo2.png")}
+        />
+        <Image
+          style={[styles.groupInner, styles.groupLayout]}
+          resizeMode="cover"
+          source={require("./assets/Photo3.png")}
+        />
+        <Image
+          style={[styles.rectangleIcon, styles.groupLayout]}
+          resizeMode="cover"
+          source={require("./assets/Photo4.png")}
+        />
+      </View>
+    </View>
   );
 };
 
@@ -118,33 +130,30 @@ const styles = StyleSheet.create({
     width: 338,
     textAlign: "left",
     color: Color.colorBlack,
-    //fontFamily: FontFamily.ponnala,
-    //fontSize: FontSize.size_xs,
+    fontSize: FontSize.size_xs,
     position: "absolute",
   },
   highlandTypo: {
     width: 338,
     textAlign: "left",
     color: Color.colorBlack,
-    //fontSize: FontSize.size_xs,
+    fontSize: FontSize.size_xs,
     left: 23,
     position: "absolute",
   },
   reviewsTypo: {
     height: 36,
     width: 117,
-    //fontFamily: FontFamily.poppinsSemiBold,
     fontWeight: "600",
-    //fontSize: FontSize.size_6xl,
+    fontSize: FontSize.size_6xl,
     left: 23,
     textAlign: "left",
     color: Color.colorBlack,
     position: "absolute",
   },
   aboutTypo: {
-    //fontFamily: FontFamily.poppinsSemiBold,
     fontWeight: "600",
-    //fontSize: FontSize.size_6xl,
+    fontSize: FontSize.size_6xl,
     left: 23,
     textAlign: "left",
     color: Color.colorBlack,
@@ -196,14 +205,14 @@ const styles = StyleSheet.create({
     left: 23,
   },
   text: {
-    //fontFamily: FontFamily.pollerOneRegular,
+    
   },
   highlandRdBaton: {
-    //fontFamily: FontFamily.ponnala,
+    
   },
   highlandRdBatonContainer: {
     top: 635,
-    height: 15,
+    height: 19,
     left: 23,
   },
   reviews: {
@@ -218,13 +227,13 @@ const styles = StyleSheet.create({
     top: 487,
   },
   address: {
-    top: 598,
+    top: 600,
   },
   highlandCoffeesOffers: {
-    top: 403,
+    top: 400,
     height: 84,
     left: 23,
-    //fontFamily: FontFamily.ponnala,
+    
   },
   greatAndRelatively: {
     top: 695,
@@ -235,9 +244,9 @@ const styles = StyleSheet.create({
     left: 274,
     width: 73,
     height: 27,
-    //fontSize: FontSize.size_6xl,
+    fontSize: FontSize.size_6xl,
     color: Color.colorWhite,
-    //fontFamily: FontFamily.pollerOneRegular,
+    
   },
   starIcon1: {
     marginLeft: 4.94,
@@ -274,7 +283,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   highlandCoffeesPageItem: {
-    top: 65,
+    top: 5,
     left: 321,
     width: 33.75,
     height: 29.25,

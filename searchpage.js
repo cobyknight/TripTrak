@@ -2,7 +2,6 @@ import * as React from "react";
 import { StyleSheet, View, Text, Image, Pressable, ScrollView, TextInput } from "react-native";
 import { Border, Color, FontSize, FontFamily } from "./GlobalStyles";
 import { useNavigation } from '@react-navigation/native'; // Import useNavigation
-import HighlandCoffeesPage from "./HighlandCoffeesPage";
 
 const SearchPageRestaurant = () => {
   const navigation = useNavigation(); // Initialize navigation
@@ -126,7 +125,7 @@ const SearchPageRestaurant = () => {
         </View>
         <Text
           style={[styles.dontSeeYour, styles.emailUsATypo]}
-        >{`Don’t see your business or want to advertise? 
+        >{`Don't see your business or want to advertise? 
   `}</Text>
         <Pressable
           style={[styles.emailUsARequestWrapper, styles.starsFlexBox]}
@@ -329,7 +328,7 @@ const styles = StyleSheet.create({
     width: 339,
     height: 18,
     color: Color.colorBlack,
-    //fontSize: FontSize.size_xs,
+    fontSize: FontSize.size_xs,
     position: "absolute",
   },
   emailUsA: {
@@ -499,8 +498,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,  // Adjust the borderRadius as needed
     backgroundColor: "#ffffff",
     marginBottom: 10,
-    fontSize: FontSize.size_base,
-    fontFamily: FontFamily.poppinsSemiBold,
+    //fontSize: FontSize.size_base,
+    //fontFamily: FontFamily.poppinsSemiBold,
     color: Color.colorBlack,
     textAlign: 'center', // Center the text
     marginTop: 37, // Adjust the marginTop to lower the text

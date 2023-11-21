@@ -17,7 +17,7 @@ const TabNavigator = () => {
       }}
     >
       <Tab.Screen
-        name=" "
+        name="Search"
         component={Search}
         options={{
           headerShown: false,

@@ -20,7 +20,7 @@ function Profile({ navigation }) {
     return (
       <View style={styles.container}>
         <View style={styles.headerContainer}>
-          <Text style={styles.header}>                    Hello, Clarice</Text>
+          <Text style={styles.header}>Hello, Clarice</Text>
           <View style={styles.headerUnderline} />
         </View>
         <TouchableOpacity style={styles.menuItem} onPress={() => {}}>
@@ -51,6 +51,7 @@ function Profile({ navigation }) {
       paddingTop: 50,
     },
     headerContainer: {
+      alignItems: 'center',
       width: '100%', // Full width to align text to the left
       paddingHorizontal: 20, // Padding from the left and right edges
     },

@@ -92,7 +92,7 @@ const SearchPageRestaurant = () => {
             />
           </View>
           <Image
-            style={[styles.groupItem, styles.groupItemPosition]}
+            style={[styles.groupItemPosition]}
             resizeMode="cover"
             source={require("./assets/tio_javis.png")}
           />

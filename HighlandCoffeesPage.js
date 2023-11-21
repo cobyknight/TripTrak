@@ -1,13 +1,6 @@
 import * as React from "react";
-import {
-  Image,
-  StyleSheet,
-  View,
-  Text,
-  Pressable,
-  ScrollView,
-} from "react-native";
-import { Color, FontFamily, FontSize, Border } from "./GlobalStyles";
+import {Image, StyleSheet, View, Text, Pressable, TouchableOpacity} from "react-native";
+import { Color, Border } from "./GlobalStyles";
 import { useNavigation } from "@react-navigation/native"; // Import useNavigation
 import searchpage from "./searchpage";
 
@@ -19,7 +12,6 @@ const HighlandCoffeesPage = () => {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollViewContainer}>
       <View style={[styles.highlandCoffeesPage, styles.icon1Layout]}>
         <Image
           style={styles.icon}
@@ -28,10 +20,10 @@ const HighlandCoffeesPage = () => {
         />
         <View style={styles.highlandCoffeesPageChild} />
         <Text style={[styles.theAtmosphereWas, styles.gotACoffeeTypo]}>
-          The atmosphere was great. Roomy and calm.
+          Atmosphere was great! Roomy and calm.
         </Text>
         <Text style={[styles.gotACoffee, styles.gotACoffeeTypo]}>
-          Got a coffee with two extra shots, and it was tasty but weak
+          Got a coffee, and it was tasty but weak.
         </Text>
         <Text style={[styles.highlandRdBatonContainer, styles.highlandTypo]}>
           <Text
@@ -113,7 +105,6 @@ const HighlandCoffeesPage = () => {
           />
         </View>
       </View>
-    </ScrollView>
   );
 };
 

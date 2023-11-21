@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet, View, Text, Image, Pressable, ScrollView } from "react-native";
+import { StyleSheet, View, Text, Image, Pressable, ScrollView, TextInput } from "react-native";
 import { Border, Color, FontSize, FontFamily } from "./GlobalStyles";
 import { useNavigation } from '@react-navigation/native'; // Import useNavigation
 import HighlandCoffeesPage from "./HighlandCoffeesPage";
@@ -13,6 +13,14 @@ const SearchPageRestaurant = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+      <View style={styles.searchBar}>
+        <TextInput
+          style={styles.searchBarText}
+          placeholder="Destination: Baton Rouge"
+          placeholderTextColor="#000000"
+        />
+      </View>
+      
       <View style={styles.searchPageRestaurant}>
 
         {/* Each restaurant item */}
@@ -271,7 +279,7 @@ const styles = StyleSheet.create({
     borderRadius: Border.br_11xl,
   },
   rectangleParent: {
-    top: 90,
+    top: 30,
   },
   groupInner: {
     backgroundColor: Color.colorWhitesmoke_100,
@@ -286,19 +294,19 @@ const styles = StyleSheet.create({
     color: "#ff0022",
   },
   rectangleContainer: {
-    top: 420,
+    top: 360,
   },
   groupView: {
-    top: 310,
+    top: 250,
   },
   tioJavisFresh4: {
     left: 113,
   },
   rectangleParent1: {
-    top: 200,
+    top: 140,
   },
   rectangleParent2: {
-    top: 530,
+    top: 470,
   },
   searchPageRestaurantChild: {
     top: 647,
@@ -478,6 +486,24 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: 6, // Adjust as needed for proper alignment
     top: 14, // Adjust as needed for proper alignment
+  },
+  searchBar: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 10,
+  },
+
+  searchBarText: {
+    width: 300,
+    padding: 10,
+    borderRadius: 20,  // Adjust the borderRadius as needed
+    backgroundColor: "#ffffff",
+    marginBottom: 10,
+    fontSize: FontSize.size_base,
+    fontFamily: FontFamily.poppinsSemiBold,
+    color: Color.colorBlack,
+    textAlign: 'center', // Center the text
+    marginTop: 37, // Adjust the marginTop to lower the text
   },
 });
 

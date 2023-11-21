@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     marginVertical: 16,
+    top:45,
   },
   item: {
     flexDirection: 'row',
@@ -45,6 +46,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     borderBottomWidth: 1,
     borderColor: '#ccc',
+    top: 65
   },
   locationName: {
     fontSize: 18,

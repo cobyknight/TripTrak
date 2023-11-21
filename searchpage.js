@@ -75,9 +75,9 @@ const SearchPageRestaurant = () => {
             />
           </View>
           <Image
-            style={[styles.groupItem, styles.groupItemPosition1]}
+            style={[styles.groupItemPosition]}
             resizeMode="cover"
-            source={require("./assets/chimes.png")}
+            source={require("./assets/chimes.jpg")}
           />
         </View>
         <View style={[styles.rectangleParent1, styles.rectangleParentLayout]}>
@@ -113,7 +113,7 @@ const SearchPageRestaurant = () => {
           <Image
             style={styles.groupItemPosition}
             resizeMode="cover"
-            source={require("./assets/olive_twist.png")}
+            source={require("./assets/olive_twist.jpg")}
           />
         </View>
         <Text
@@ -190,10 +190,8 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   groupItemPosition1: {
-    height: 75,
-    width: 90,
-    left: 6,
-    top: 10,
+    height: 30,
+    width: 60,
     position: "absolute",
   },
   tioTypo: {

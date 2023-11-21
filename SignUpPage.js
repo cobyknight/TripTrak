@@ -1,10 +1,20 @@
 import * as React from "react";
-import { Image, StyleSheet, Pressable, View, Text } from "react-native";
+import { Image, StyleSheet, Pressable, View, Text, TextInput } from "react-native";
 import { Color, FontSize, Border } from "./GlobalStyles";
+import { useNavigation } from "@react-navigation/native"; // Import useNavigation
+
 
 const SignUpPage = () => {
+
+  const navigation = useNavigation();
+
+  const handlePress = () => {
+    navigation.navigate("LoginPage"); // Navigate to the 'search page' screen
+  };
+
   return (
     <View style={styles.signUpPage}>
+      <Text style={styles.signUp}>Sign-Up</Text>
       <Pressable style={styles.arrowLeft1} onPress={() => {}}>
         <Image
           style={[styles.icon, styles.iconLayout]}
@@ -12,32 +22,28 @@ const SignUpPage = () => {
           source={require("./assets/left_arrow.png")}
         />
       </Pressable>
-      <Pressable
-        style={[styles.rectangleParent, styles.groupParentLayout]}
-        onPress={() => {}}
-      >
-        <View style={[styles.groupChild, styles.groupPosition]} />
-      </Pressable>
-      <View style={[styles.rectangleGroup, styles.groupLayout]}>
+      <View style={[styles.rectangleParent, styles.rectangleLayout]}>
         <View style={[styles.groupItem, styles.groupLayout]} />
-        <Text style={styles.enter}>Enter</Text>
+        <Pressable onPress={handlePress}>
+          <Text style={[styles.enter, styles.enterTypo]}>Enter</Text>
+        </Pressable>
       </View>
-      <View style={[styles.rectangleContainer, styles.groupParentLayout]}>
-        <View style={[styles.groupChild, styles.groupPosition]} />
-      </View>
-      <Text style={[styles.emailAddress, styles.usernameTypo]}>
-        Email Address
-      </Text>
-      <View style={[styles.groupView, styles.groupParentLayout]}>
-        <View style={[styles.groupChild, styles.groupPosition]} />
-      </View>
-      <Text style={[styles.firstName, styles.usernameTypo]}>First Name</Text>
-      <View style={[styles.rectangleParent1, styles.groupParentLayout]}>
-        <View style={[styles.groupChild, styles.groupPosition]} />
-      </View>
-      <Text style={[styles.username, styles.usernameTypo]}>Username</Text>
-      <Text style={[styles.password, styles.usernameTypo]}>Password</Text>
-      <Text style={[styles.signUp, styles.signUpFlexBox]}>Sign-Up</Text>
+      <TextInput
+        style={[styles.emailAddress, styles.usernameTypo]}
+        placeholder="Email Address"
+      />
+      <TextInput
+        style={[styles.firstName, styles.usernameTypo]}
+        placeholder="First Name"
+      />
+      <TextInput
+        style={[styles.username, styles.usernameTypo]}
+        placeholder="Username"
+      />
+      <TextInput
+        style={[styles.password, styles.usernameTypo]}
+        placeholder="Password"
+      />
     </View>
   );
 };
@@ -67,11 +73,14 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   usernameTypo: {
-    color: Color.colorGray,
-    left: 84,
+    left: 63,
     textAlign: "left",
-    fontSize: FontSize.size_base,
     position: "absolute",
+    width: 275,
+    padding: 10,
+    borderRadius: 10,
+    backgroundColor: Color.colorWhitesmoke_100,
+    fontSize: FontSize.size_base,
   },
   icon: {
     height: "100%",
@@ -90,17 +99,14 @@ const styles = StyleSheet.create({
     width: 255,
     position: "absolute",
   },
-  silentlamb91gmailcom: {
-    display: "none",
-    fontSize: FontSize.size_base,
-    left: 13,
-    top: 7,
-    textAlign: "left",
+  rectangleLayout: {
+    width: 147,
+    left: 126,
+    height: 38,
+    position: "absolute",
   },
   rectangleParent: {
-    top: 221,
-    left: 72,
-    width: 255,
+    top: 550,
   },
   groupItem: {
     borderRadius: 110,
@@ -109,12 +115,16 @@ const styles = StyleSheet.create({
     top: 0,
   },
   enter: {
-    textAlign: "center",
-    width: 121,
-    color: Color.colorBlack,
-    fontSize: FontSize.size_base,
-    left: 13,
     top: 7,
+    left: 13,
+    width: 121,
+    textAlign: "center",
+    fontSize: FontSize.size_base,
+    color: Color.colorBlack,
+  },
+  enterTypo: {
+    textAlign: "center",
+    fontSize: FontSize.size_base,
     position: "absolute",
   },
   rectangleGroup: {

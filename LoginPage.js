@@ -18,18 +18,21 @@ const handlePress2 = () => {
   return (
     <View style={styles.loginPage}>
       <Text style={styles.signIn}>Sign-In</Text>
-      <Pressable
-        style={[styles.loginPageInner, styles.loginLayout]}
-        onPress={() => {}}
-      >
-        <View style={styles.groupChild} />
-      </Pressable>
+      <TextInput
+        style={[styles.username, styles.usernameTypo]}
+        placeholder="Username"
+      />
+      <TextInput
+        style={[styles.password, styles.usernameTypo]}
+        placeholder="Password"
+      />
       <View style={[styles.rectangleParent, styles.rectangleLayout]}>
         <View style={[styles.groupItem, styles.groupLayout]} />
         <Pressable onPress={handlePress}>
           <Text style={[styles.enter, styles.enterTypo]}>Enter</Text>
         </Pressable>
       </View>
+      <Text style={[styles.dontHaveAn, styles.enterTypo]}>Don't have an account?</Text>
       <Pressable
         style={[styles.rectangleGroup, styles.rectangleLayout]}
         onPress={handlePress2}
@@ -37,14 +40,6 @@ const handlePress2 = () => {
         <View style={[styles.groupInner, styles.groupLayout]} />
         <Text style={[styles.enter, styles.enterTypo]}>Sign Up</Text>
       </Pressable>
-      <View style={[styles.loginPageChild, styles.loginLayout]}>
-        <View style={styles.groupChild} />
-      </View>
-      <TextInput style={[styles.username, styles.usernameTypo]} placeholder="Username" />
-      <TextInput style={[styles.password, styles.usernameTypo]} placeholder="Password" />
-      <Text style={[styles.dontHaveAn, styles.enterTypo]}>
-        Don't have an account?
-      </Text>
     </View>
   );
 };
@@ -76,15 +71,18 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   usernameTypo: {
-    color: Color.colorGray,
-    left: 84,
-    fontSize: FontSize.size_base,
+    left: 63,
     textAlign: "left",
     position: "absolute",
+    width: 275,
+    padding: 10,
+    borderRadius: 10,
+    backgroundColor: Color.colorWhitesmoke_100,
+    fontSize: FontSize.size_base,
   },
   signIn: {
     top: 132,
-    left: 146,
+    left: 140,
     fontSize: 30,
     fontWeight: "600",
     textAlign: "left",

@@ -19,11 +19,8 @@ const SearchPageRestaurant = () => {
           placeholderTextColor="#000000"
         />
       </View>
-      
-      <View style={styles.searchPageRestaurant}>
 
-        {/* Each restaurant item */}
-        
+      <View style={styles.searchPageRestaurant}>
         <View style={[styles.rectangleParent, styles.rectangleParentLayout]}>
           <View style={[styles.groupChild, styles.groupLayout]} />
         </View>
@@ -38,22 +35,20 @@ const SearchPageRestaurant = () => {
             <Image
               style={styles.starIconLayout}
               resizeMode="cover"
-              source={require('./assets/4.5_star.png')}
+              source={require("./assets/4.5_star.png")}
             />
           </View>
           <Image
             style={styles.groupItemPosition}
             resizeMode="cover"
-            source={require('./assets/highland_coffees.png')}
+            source={require("./assets/highland_coffees.png")}
           />
         </Pressable>
         <View style={[styles.rectangleContainer, styles.rectangleParentLayout]}>
           <View style={[styles.groupInner, styles.groupLayout]} />
           <Text style={[styles.text2, styles.textTypo]}>$$$</Text>
-          <Text
-            style={[styles.tioJavisFresh1, styles.tioTypo]}
-          >{`City Slice Pizza and Pints
-  `}</Text>
+          <Text style={[styles.tioJavisFresh1, styles.tioTypo]}>{`City Slice Pizza and Pints`}</Text>
+          <View style={[styles.separator]} />
           <View style={[styles.stars, styles.starsFlexBox]}>
             <Image
               style={styles.starIconLayout}
@@ -70,8 +65,8 @@ const SearchPageRestaurant = () => {
         <View style={[styles.groupView, styles.rectangleParentLayout]}>
           <View style={[styles.groupInner, styles.groupLayout]} />
           <Text style={[styles.text, styles.textTypo]}>$$</Text>
-          <Text style={[styles.tioJavisFresh1, styles.tioTypo]}>{`The Chimes
-  `}</Text>
+          <Text style={[styles.tioJavisFresh1, styles.tioTypo]}>{`The Chimes`}</Text>
+          <View style={[styles.separator]} />
           <View style={[styles.stars, styles.starsFlexBox]}>
             <Image
               style={styles.starIconLayout}
@@ -80,17 +75,15 @@ const SearchPageRestaurant = () => {
             />
           </View>
           <Image
-            style={[styles.groupItem, styles.groupItemPosition]}
+            style={[styles.groupItem, styles.groupItemPosition1]}
             resizeMode="cover"
             source={require("./assets/chimes.png")}
           />
         </View>
         <View style={[styles.rectangleParent1, styles.rectangleParentLayout]}>
           <View style={[styles.groupInner, styles.groupLayout]} />
-          <Text
-            style={[styles.tioJavisFresh4, styles.tioTypo]}
-          >{`Tio Javi's Bar & Grill
-  `}</Text>
+          <Text style={[styles.tioJavisFresh4, styles.tioTypo]}>{`Tio Javi's Bar & Grill`}</Text>
+          <View style={[styles.separator]} />
           <View style={[styles.stars, styles.starsFlexBox]}>
             <Image
               style={styles.starIconLayout}
@@ -108,8 +101,8 @@ const SearchPageRestaurant = () => {
         <View style={[styles.rectangleParent2, styles.rectangleParentLayout]}>
           <View style={[styles.groupInner, styles.groupLayout]} />
           <Text style={[styles.text, styles.textTypo]}>$$</Text>
-          <Text style={[styles.tioJavisFresh1, styles.tioTypo]}>{`Olive or Twist
-  `}</Text>
+          <Text style={[styles.tioJavisFresh1, styles.tioTypo]}>{`Olive or Twist`}</Text>
+          <View style={[styles.separator]} />
           <View style={[styles.stars, styles.starsFlexBox]}>
             <Image
               style={styles.starIconLayout}
@@ -144,10 +137,17 @@ const SearchPageRestaurant = () => {
 };
 
 const styles = StyleSheet.create({
+  separator: {
+    height: 1,
+    width: "80%",
+    left: 45,
+    marginTop: -5,
+    backgroundColor: Color.colorGainsboro,
+  },
   rectangleParentLayout: {
     height: 94,
     width: 341,
-    left:"50%",
+    left: "50%",
     marginLeft: -180,
     position: "absolute",
   },
@@ -183,6 +183,13 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   groupItemPosition: {
+    height: 99,
+    width: 100,
+    left: 0,
+    top: 1,
+    position: "absolute",
+  },
+  groupItemPosition1: {
     height: 75,
     width: 90,
     left: 6,
@@ -487,21 +494,22 @@ const styles = StyleSheet.create({
     top: 14, // Adjust as needed for proper alignment
   },
   searchBar: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     padding: 10,
+    backgroundColor: "#008C8F",
   },
 
   searchBarText: {
     width: 300,
     padding: 10,
-    borderRadius: 20,  // Adjust the borderRadius as needed
+    borderRadius: 20, // Adjust the borderRadius as needed
     backgroundColor: "#ffffff",
     marginBottom: 10,
     //fontSize: FontSize.size_base,
     //fontFamily: FontFamily.poppinsSemiBold,
     color: Color.colorBlack,
-    textAlign: 'center', // Center the text
+    textAlign: "center", // Center the text
     marginTop: 37, // Adjust the marginTop to lower the text
   },
 });

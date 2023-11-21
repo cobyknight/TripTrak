@@ -1,6 +1,7 @@
 import React from "react";
 import { Image } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Color } from "./GlobalStyles";
 import Favorites from "./favoritespage";
 import Profile from "./profilepage";
 import Search from "./searchpage";
@@ -21,6 +22,7 @@ const TabNavigator = () => {
         component={Search}
         options={{
           headerShown: false,
+          color: Color.colorBlack,
           tabBarLabel: "Search",
           tabBarIcon: ({ focused }) => (
             <Image

@@ -12,7 +12,7 @@ function MainPage() {
     <View
       style={{
         flex: 1,
-        backgroundColor: "#fff",
+        backgroundColor: "#008C8F",
         alignItems: "center",
         justifyContent: "center",
         paddingBottom: 200, // Added padding to move content down

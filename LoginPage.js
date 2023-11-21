@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   groupLayout: {
     borderRadius: Border.br_91xl,
     width: 147,
-    left: 0,
+    left: -5,
     top: 0,
     height: 38,
     position: "absolute",
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   },
   enter: {
     top: 7,
-    left: 13,
+    left: 10,
     width: 121,
     textAlign: "center",
     fontSize: FontSize.size_base,

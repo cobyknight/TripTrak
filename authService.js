@@ -1,12 +1,13 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail  } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword, signOut, sendPasswordResetEmail } from 'firebase/auth';
 import { app as firebaseApp } from './firebase'; // Import the initialized app object
 
 const auth = getAuth(firebaseApp);
 
-const signUp = async (email, password) => {
+const signUp = async (email, password, firstName) => {
     try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
+        await updateProfile(user, { displayName: firstName });
         // User signed up successfully
         return user;
     } catch (error) {
@@ -51,11 +52,10 @@ const sendPasswordReset = async (email) => {
     }
   };
 
-const handleSignUp = async (email, password, setMessage) => {
+const handleSignUp = async (email, password, firstName, setMessage) => {
     try {
-        await signUp(email, password);
+        await signUp(email, password, firstName);
         setMessage('User signed up successfully');
-        // You may want to navigate to a different page or perform other actions upon successful sign-up
     } catch (error) {
         setMessage(`Sign-up failed: ${error.message}`);
     }
@@ -65,7 +65,6 @@ const handleSignIn = async (email, password, setMessage) => {
     try {
         await signIn(email, password);
         setMessage('User signed in successfully');
-        // You may want to navigate to a different page or perform other actions upon successful sign-in
     } catch (error) {
         setMessage(`Sign-in failed: ${error.message}`);
     }
@@ -75,7 +74,6 @@ const handleSignOut = async (setMessage) => {
     try {
         await signOutUser();
         setMessage('User signed out successfully');
-        // You may want to navigate to a different page or perform other actions upon successful sign-out
     } catch (error) {
         setMessage(`Sign-out failed: ${error.message}`);
     }

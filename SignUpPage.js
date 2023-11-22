@@ -1,175 +1,121 @@
-import * as React from "react";
-import { Image, StyleSheet, Pressable, View, Text, TextInput } from "react-native";
-import { Color, FontSize, Border } from "./GlobalStyles";
-import { useNavigation } from "@react-navigation/native"; // Import useNavigation
-
+import React, { useState } from "react";
+import { View, Text, TextInput, Pressable, Image, StyleSheet, Alert } from "react-native";
+import { FontSize } from "./GlobalStyles";
+import { useNavigation } from "@react-navigation/native";
+import { handleSignUp } from './authService'; // Import authentication handle methods
 
 const SignUpPage = () => {
 
   const navigation = useNavigation();
+  const [signUpEmail, setSignUpEmail] = useState('');
+  const [signUpPassword, setSignUpPassword] = useState('');
+  const [firstName, setFirstName] = useState("");
+  const [message, setMessage] = useState('');
 
   const handlePress = () => {
-    navigation.navigate("LoginPage"); // Navigate to the 'search page' screen
+    navigation.navigate("Profile");
   };
 
+  const handleSignUpClick = () => {
+    handleSignUp(signUpEmail, signUpPassword, firstName, setMessage);
+  };
+
+
   return (
-    <View style={styles.signUpPage}>
+    <View style={styles.container}>
       <Text style={styles.signUp}>Sign-Up</Text>
-      <Pressable style={styles.arrowLeft1} onPress={() => {}}>
+      <Pressable style={styles.arrowLeft1} onPress={handlePress}>
         <Image
           style={[styles.icon, styles.iconLayout]}
           resizeMode="cover"
           source={require("./assets/left_arrow.png")}
         />
       </Pressable>
-      <View style={[styles.rectangleParent, styles.rectangleLayout]}>
-        <View style={[styles.groupItem, styles.groupLayout]} />
-        <Pressable onPress={handlePress}>
-          <Text style={[styles.enter, styles.enterTypo]}>Enter</Text>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          placeholder="Email Address"
+          value={signUpEmail}
+          onChangeText={setSignUpEmail}
+        />
+                <TextInput
+          style={styles.input}
+          placeholder="Password"
+          value={signUpPassword}
+          secureTextEntry
+          onChangeText={setSignUpPassword}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="First Name"
+          value={firstName}
+          onChangeText={setFirstName}
+        />
+        <Pressable style={styles.button} onPress={handleSignUpClick}>
+          <Text style={styles.buttonText}>Sign Up</Text>
         </Pressable>
       </View>
-      <TextInput
-        style={[styles.emailAddress, styles.usernameTypo]}
-        placeholder="Email Address"
-      />
-      <TextInput
-        style={[styles.firstName, styles.usernameTypo]}
-        placeholder="First Name"
-      />
-      <TextInput
-        style={[styles.username, styles.usernameTypo]}
-        placeholder="Username"
-      />
-      <TextInput
-        style={[styles.password, styles.usernameTypo]}
-        placeholder="Password"
-      />
+      <View style={styles.errorContainer}>
+        <Text style={styles.errorMessage}>{message}</Text>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  iconLayout: {
-    overflow: "hidden",
-    width: "100%",
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#008C8F",
   },
-  groupParentLayout: {
-    height: 38,
-    width: 255,
-    position: "absolute",
-  },
-  groupPosition: {
-    left: 0,
-    top: 0,
-  },
-  signUpFlexBox: {
-    textAlign: "left",
-    color: Color.colorBlack,
-    position: "absolute",
-  },
-  groupLayout: {
-    width: 147,
-    height: 38,
-    position: "absolute",
-  },
-  usernameTypo: {
-    left: 63,
-    textAlign: "left",
-    position: "absolute",
-    width: 275,
-    padding: 10,
-    borderRadius: 10,
-    backgroundColor: Color.colorWhitesmoke_100,
-    fontSize: FontSize.size_base,
-  },
-  icon: {
-    height: "100%",
+  signUp: {
+    fontSize: 30,
+    fontWeight: "600",
+    color: "#FFFFFF",
   },
   arrowLeft1: {
+    position: "absolute",
     left: 15,
     top: 46,
     width: 61,
     height: 56,
-    position: "absolute",
   },
-  groupChild: {
-    borderRadius: Border.br_3xs,
-    backgroundColor: Color.colorGainsboro,
-    height: 38,
-    width: 255,
-    position: "absolute",
+  icon: {
+    height: "100%",
   },
-  rectangleLayout: {
-    width: 147,
-    left: 126,
-    height: 38,
-    position: "absolute",
+  inputContainer: {
+    width: "80%",
+    marginTop: 20,
   },
-  rectangleParent: {
-    top: 550,
+  input: {
+    height: 40,
+    borderColor: "gray",
+    borderWidth: 1,
+    borderRadius: 10,
+    marginBottom: 10,
+    paddingLeft: 10,
+    backgroundColor: "#FFFFFF",
   },
-  groupItem: {
-    borderRadius: 110,
+  button: {
     backgroundColor: "#ffa660",
-    left: 0,
-    top: 0,
+    borderRadius: 10,
+    padding: 10,
+    alignItems: "center",
   },
-  enter: {
-    top: 7,
-    left: 13,
-    width: 121,
-    textAlign: "center",
-    fontSize: FontSize.size_base,
-    color: Color.colorBlack,
+  buttonText: {
+    color: "#FFFFFF",
+    fontSize: 16,
   },
-  enterTypo: {
-    textAlign: "center",
-    fontSize: FontSize.size_base,
+  errorContainer: {
     position: "absolute",
-  },
-  rectangleGroup: {
-    top: 515,
-    left: 126,
-  },
-  rectangleContainer: {
-    top: 450,
-    left: 72,
-    width: 255,
-  },
-  emailAddress: {
-    top: 228,
-  },
-  groupView: {
-    top: 296,
-    left: 72,
-    width: 255,
-  },
-  firstName: {
-    top: 303,
-  },
-  rectangleParent1: {
-    top: 371,
-    left: 72,
-    width: 255,
-  },
-  username: {
-    top: 379,
-  },
-  password: {
-    top: 457,
-  },
-  signUp: {
-    top: 134,
-    left: 130,
-    fontSize: 30,
-    fontWeight: "600",
-  },
-  signUpPage: {
-    flex: 1,
+    top: 230,
     width: "100%",
-    height: 844,
-    overflow: "hidden",
-    backgroundColor: "#008C8F",
+    alignItems: "center",
+  },
+  errorMessage: {
+    color: "#000",
+    fontSize: FontSize.size_base,
   },
 });
 

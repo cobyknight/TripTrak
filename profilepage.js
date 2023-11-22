@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Pressable } from "react-native";
-import { useNavigation } from "@react-navigation/native"; // Import useNavigation
-import FontAwesome from "react-native-vector-icons/FontAwesome"; // Import FontAwesome
+import { useNavigation } from "@react-navigation/native";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const Profile = () => {
   // Example function to handle logout
@@ -15,17 +16,39 @@ const Profile = () => {
   const handleHistory = () => console.log("Navigate to History");
   const handleNotifications = () => console.log("Navigate to Notifications");
   const handlePrivacy = () => console.log("Navigate to Privacy");
-
-  const navigation = useNavigation(); // Initialize navigation
+  const [user, setUser] = useState(null);
+  const navigation = useNavigation();
 
   const handlePress = () => {
-    navigation.navigate("LoginPage"); // Navigate to the 'Login Screen' screen
+    navigation.navigate("LoginPage");
+  };
+
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (authUser) => {
+      if (authUser) {
+        setUser(authUser);
+      } else {
+        setUser(null);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+  const getFirstName = () => {
+    if (user && user.providerData && user.providerData.length > 0) {
+      const displayName = user.providerData[0].displayName;
+      if (displayName) {
+        const firstName = displayName.split(' ')[0];
+        return firstName;
+      }
+    }
+    return 'user';
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
-        <Text style={styles.header}>Hello, Clarice</Text>
+        <Text style={styles.header}>Hello, {getFirstName()}</Text>
         <View style={styles.headerUnderline} />
       </View>
       <Pressable style={styles.menuItem} onPress={() => {}}>

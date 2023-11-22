@@ -1,37 +1,68 @@
-import * as React from "react";
-import { Text, StyleSheet, View, Pressable, TextInput } from "react-native";
+import React, { useState } from 'react';
+import { View, Text, TextInput, Pressable, Image, StyleSheet, Button } from "react-native";
 import { Border, FontSize, Color } from "./GlobalStyles";
-import { useNavigation } from "@react-navigation/native"; // Import useNavigation
+import { useNavigation } from "@react-navigation/native";
+import { handleSignIn } from './authService'; // Import authentication handle methods
 
 const LoginPage = () => {
 
-const navigation = useNavigation();
+  const navigation = useNavigation();
+  const [signInEmail, setSignInEmail] = useState('');
+  const [signInPassword, setSignInPassword] = useState('');
+  const [message, setMessage] = useState('');
+  // const [resetPasswordEmail, setResetPasswordEmail] = useState('');        For later use
 
-const handlePress = () => {
-  navigation.navigate("Search"); // Navigate to the 'search page' screen
-};
+  const handlePress = () => {
+    navigation.navigate("Profile");
+  };
 
-const handlePress2 = () => {
-  navigation.navigate("SignUpPage")
-}
+  const handlePress2 = () => {
+    navigation.navigate("SignUpPage")
+  }
+
+  const handleSignInClick = () => {
+    handleSignIn(signInEmail, signInPassword, setMessage);
+  };
+
+  // const handleResetPasswordClick = () => {                       For later use
+  //   sendPasswordReset(resetPasswordEmail)
+  //     .then(() => setMessage('Password reset email sent!'))
+  //     .catch((error) => setMessage(`Password reset failed: ${error.message}`));
+  // };
 
   return (
     <View style={styles.loginPage}>
       <Text style={styles.signIn}>Sign-In</Text>
+      <Pressable style={styles.arrowLeft1} onPress={handlePress}>
+        <Image
+          style={[styles.icon, styles.iconLayout]}
+          resizeMode="cover"
+          source={require("./assets/left_arrow.png")}
+        />
+      </Pressable>
       <TextInput
-        style={[styles.username, styles.usernameTypo]}
-        placeholder="Username"
+        style={[styles.email, styles.emailTypo]}
+        placeholder="Email"
+        value={signInEmail}
+        onChangeText={setSignInEmail}
       />
       <TextInput
-        style={[styles.password, styles.usernameTypo]}
+        style={[styles.password, styles.emailTypo]}
         placeholder="Password"
+        value={signInPassword}
+        secureTextEntry
+        onChangeText={setSignInPassword}
       />
       <View style={[styles.rectangleParent, styles.rectangleLayout]}>
         <View style={[styles.groupItem, styles.groupLayout]} />
-        <Pressable onPress={handlePress}>
+        <Pressable onPress={handleSignInClick}>
           <Text style={[styles.enter, styles.enterTypo]}>Enter</Text>
         </Pressable>
       </View>
+      <View style={styles.errorContainer}>
+        <Text style={styles.errorMessage}>{message}</Text>
+      </View>
+      
       <Text style={[styles.dontHaveAn, styles.enterTypo]}>Don't have an account?</Text>
       <Pressable
         style={[styles.rectangleGroup, styles.rectangleLayout]}
@@ -45,6 +76,13 @@ const handlePress2 = () => {
 };
 
 const styles = StyleSheet.create({
+  arrowLeft1: {
+    position: "absolute",
+    left: 15,
+    top: 46,
+    width: 61,
+    height: 56,
+  },
   loginLayout: {
     height: 38,
     width: 255,
@@ -70,7 +108,7 @@ const styles = StyleSheet.create({
     fontSize: FontSize.size_base,
     position: "absolute",
   },
-  usernameTypo: {
+  emailTypo: {
     left: 63,
     textAlign: "left",
     position: "absolute",
@@ -124,7 +162,7 @@ const styles = StyleSheet.create({
   loginPageChild: {
     top: 294,
   },
-  username: {
+  email: {
     top: 228,
   },
   password: {
@@ -137,6 +175,16 @@ const styles = StyleSheet.create({
     height: 50,
     left: 72,
     textAlign: "center",
+    fontSize: FontSize.size_base,
+  },
+    errorContainer: {
+    position: "absolute",
+    top: 420,
+    width: "100%",
+    alignItems: "center",
+  },
+  errorMessage: {
+    color: "#000",
     fontSize: FontSize.size_base,
   },
   loginPage: {

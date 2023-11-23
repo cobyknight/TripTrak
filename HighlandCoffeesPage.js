@@ -1,26 +1,30 @@
 import React from "react";
-import { StatusBar, StyleSheet, View, Text, Image, Pressable, ScrollView, TextInput, SafeAreaView } from "react-native";
+import { StyleSheet, View, Text, Image, Pressable, ScrollView, TextInput, SafeAreaView } from "react-native";
 import { useNavigation } from '@react-navigation/native';
-import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { FontAwesome } from '@expo/vector-icons';
 
 const HighlandCoffeesPage = () => {
   const navigation = useNavigation();
   const goBackAPage = () => {
-    navigation.goBack("SearchPage"); // Navigate to the 'search page' screen
+    navigation.goBack("SearchPage");
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-    <StatusBar barStyle={ 'dark-content' }/>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#1a1c21'}}>
       <View>
-
+        <Pressable onPress={goBackAPage}>
+          <FontAwesome name="arrow-circle-left" size={50} color="white" style={styles.icon} />
+        </Pressable>
+        
       </View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-
+icon: {
+    padding: 30,
+  },
 });
 
 export default HighlandCoffeesPage;

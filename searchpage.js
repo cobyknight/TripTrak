@@ -1,12 +1,11 @@
 import React from "react";
 import { StyleSheet, View, Text, Image, Pressable, ScrollView, TextInput, SafeAreaView } from "react-native";
 import { useNavigation } from '@react-navigation/native';
-import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { FontAwesome } from '@expo/vector-icons';
 
 const SearchPage = () => {
   const navigation = useNavigation();
   const goToHighlandCoffees = () => {
-    navigation.removeListener;
     navigation.navigate("HighlandCoffeesPage");
   };
   const tempPressLocation = () => {
@@ -49,10 +48,15 @@ const SearchPage = () => {
           <Image source={require("./assets/highland_coffees.png")} style={styles.boxImage} />
           <Text style={styles.boxText}>
             <Text style={{ color: 'white' }}>Highland Coffees</Text>{'\n'}
+            <Text style={{ color: 'white', fontSize: 4, }}> </Text>{'\n'}
             <Text style={{ color: 'white' }}>4.7</Text>
             <Text style={{ color: '#FFA500' }}> ★</Text>
             <Text style={{ color: 'white' }}> ⋅</Text>
             <Text style={{ color: '#008080' }}> $</Text>
+            <Text style={{color: 'white'}}> ⋅ Cafe </Text>
+          </Text>
+          <Text style={styles.ranking}>
+            <Text style={{ color: 'gold', fontSize: 30 }}>1</Text>
           </Text>
         </Pressable>
 
@@ -60,10 +64,15 @@ const SearchPage = () => {
           <Image source={require("./assets/rouls_deli.png")} style={styles.boxImage} />
           <Text style={styles.boxText}>
             <Text style={{ color: 'white' }}>Roul's Deli</Text>{'\n'}
+            <Text style={{ color: 'white', fontSize: 4, }}> </Text>{'\n'}
             <Text style={{ color: 'white' }}>4.2</Text>
             <Text style={{ color: '#FFA500' }}> ★</Text>
             <Text style={{ color: 'white' }}> ⋅</Text>
             <Text style={{ color: '#008080' }}> $</Text>
+            <Text style={{color: 'white'}}> ⋅ Burger</Text>
+          </Text>
+          <Text style={styles.ranking}>
+            <Text style={{ color: 'silver', fontSize: 30 }}>2</Text>
           </Text>
         </Pressable>
 
@@ -71,10 +80,15 @@ const SearchPage = () => {
           <Image source={require("./assets/chimes.png")} style={styles.boxImage} />
           <Text style={styles.boxText}>
             <Text style={{ color: 'white' }}>The Chimes</Text>{'\n'}
+            <Text style={{ color: 'white', fontSize: 4, }}> </Text>{'\n'}
             <Text style={{ color: 'white' }}>4.4</Text>
             <Text style={{ color: '#FFA500' }}> ★</Text>
             <Text style={{ color: 'white' }}> ⋅</Text>
             <Text style={{ color: '#FF6600' }}> $$</Text>
+            <Text style={{color: 'white'}}> ⋅ Cajun | Dining</Text>
+          </Text>
+          <Text style={styles.ranking}>
+            <Text style={{ color: 'brown', fontSize: 30 }}>3</Text>
           </Text>
         </Pressable>
 
@@ -82,10 +96,12 @@ const SearchPage = () => {
           <Image source={require("./assets/city_slice.png")} style={styles.boxImage} />
           <Text style={styles.boxText}>
             <Text style={{ color: 'white' }}>City Slice Pizza and Pints</Text>{'\n'}
+            <Text style={{ color: 'white', fontSize: 4, }}> </Text>{'\n'}
             <Text style={{ color: 'white' }}>4.3</Text>
             <Text style={{ color: '#FFA500' }}> ★</Text>
             <Text style={{ color: 'white' }}> ⋅</Text>
             <Text style={{ color: '#FF0032' }}> $$$</Text>
+            <Text style={{color: 'white'}}> ⋅ Pizza</Text>
           </Text>
         </Pressable>
         
@@ -93,10 +109,12 @@ const SearchPage = () => {
           <Image source={require("./assets/tio_javis.png")} style={styles.boxImage} />
           <Text style={styles.boxText}>
             <Text style={{ color: 'white' }}>Tio Javi's Fresh Mex Bar & Grill</Text>{'\n'}
+            <Text style={{ color: 'white', fontSize: 4, }}> </Text>{'\n'}
             <Text style={{ color: 'white' }}>4.3</Text>
             <Text style={{ color: '#FFA500' }}> ★</Text>
             <Text style={{ color: 'white' }}> ⋅</Text>
             <Text style={{ color: '#FF6600' }}> $$</Text>
+            <Text style={{color: 'white'}}> ⋅ Mexican | Dining | Bar</Text>
           </Text>
         </Pressable>
 
@@ -104,10 +122,12 @@ const SearchPage = () => {
           <Image source={require("./assets/olive_or_twist.png")} style={styles.boxImage} />
           <Text style={styles.boxText}>
             <Text style={{ color: 'white' }}>Olive or Twist</Text>{'\n'}
+            <Text style={{ color: 'white', fontSize: 4, }}> </Text>{'\n'}
             <Text style={{ color: 'white' }}>4.3</Text>
             <Text style={{ color: '#FFA500' }}> ★</Text>
             <Text style={{ color: 'white' }}> ⋅</Text>
             <Text style={{ color: '#FF6600' }}> $$</Text>
+            <Text style={{color: 'white'}}> ⋅ Dining | Bar </Text>
           </Text>
         </Pressable>
       </ScrollView>
@@ -150,7 +170,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#323945",
     borderRadius: 20,
     marginVertical: 10,
-    marginHorizontal: 10,
+    marginHorizontal: 5,
     justifyContent: "center",
     shadowColor: "#000",
     shadowOffset: {
@@ -180,7 +200,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#323945",
     borderRadius: 9,
     marginVertical: 10,
-    justifyContent: "center",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -194,6 +213,12 @@ const styles = StyleSheet.create({
     top: -5,
     left: 10,
     textAlign: "left",
+    fontWeight: "bold",
+  },
+  ranking: {
+    top: -45,
+    right: 20,
+    textAlign: "right",
     fontWeight: "bold",
   },
   boxImage: {

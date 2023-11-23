@@ -1,15 +1,8 @@
-<<<<<<< HEAD
-import React from "react";
-import { SafeAreaView, View, Text, StyleSheet, TouchableOpacity, Pressable } from "react-native";
-import { useNavigation } from "@react-navigation/native"; // Import useNavigation
-import { FontAwesome } from '@expo/vector-icons'; // Import FontAwesome
-=======
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { FontAwesome } from '@expo/vector-icons';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
->>>>>>> 2292cca3bc8c1f8e9b0247571517ec5069304f46
 
 const ProfilePage = () => {
   // Example function to handle logout

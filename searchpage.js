@@ -1,515 +1,208 @@
-import * as React from "react";
-import { StyleSheet, View, Text, Image, Pressable, ScrollView, TextInput } from "react-native";
-import { Border, Color, FontSize, FontFamily } from "./GlobalStyles";
-import { useNavigation } from '@react-navigation/native'; // Import useNavigation
+import React from "react";
+import { StyleSheet, View, Text, Image, Pressable, ScrollView, TextInput, SafeAreaView } from "react-native";
+import { useNavigation } from '@react-navigation/native';
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
-const SearchPageRestaurant = () => {
-  const navigation = useNavigation(); // Initialize navigation
+const SearchPage = () => {
+  const navigation = useNavigation();
+  const goToHighlandCoffees = () => {
+    navigation.removeListener;
+    navigation.navigate("HighlandCoffeesPage");
+  };
+  const tempPressLocation = () => {
 
-  const handlePress = () => {
-    navigation.navigate("HighlandCoffeesPage"); // Navigate to the 'Restaurant' screen
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollViewContainer}>
-      <View style={styles.searchBar}>
-        <TextInput
-          style={styles.searchBarText}
-          placeholder="Destination: Baton Rouge"
-          placeholderTextColor="#000000"
-        />
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#1a1c21'}}>
+      <View style={styles.searchBarContainer}>
+        <FontAwesome name="search" size={20} color="white" style={styles.icon} />
+        <TextInput style={styles.searchBarBox} placeholder="Search Your Destination" placeholderTextColor="white" />
       </View>
 
-      <View style={styles.searchPageRestaurant}>
-        <View style={[styles.rectangleParent, styles.rectangleParentLayout]}>
-          <View style={[styles.groupChild, styles.groupLayout]} />
-        </View>
-        <Pressable
-          style={[styles.rectangleParent, styles.rectangleParentLayout]}
-          onPress={handlePress} // Use the handlePress function
-        >
-          <View style={[styles.groupInner, styles.groupLayout]} />
-          <Text style={[styles.text1, styles.textTypo]}>$</Text>
-          <Text style={[styles.tioJavisFresh1, styles.tioTypo]}>Highland Coffees</Text>
-          <View style={[styles.stars, styles.starsFlexBox]}>
-            <Image
-              style={styles.starIconLayout}
-              resizeMode="cover"
-              source={require("./assets/4.5_star.png")}
-            />
-          </View>
-          <Image
-            style={styles.groupItemPosition}
-            resizeMode="cover"
-            source={require("./assets/highland_coffees.png")}
-          />
+      <ScrollView contentContainerStyle={styles.scrollBarContainer} horizontal={true}>
+
+        <Pressable style={({ pressed }) => [ styles.scrollBox, { backgroundColor: pressed ? "#4b5669" : "#323945", }, ]} onPress={tempPressLocation} android_ripple={{ color: "#b3b3b3", borderless: true }}>
+          <Text style={styles.scrollBoxText}>Dining</Text>
         </Pressable>
-        <View style={[styles.rectangleContainer, styles.rectangleParentLayout]}>
-          <View style={[styles.groupInner, styles.groupLayout]} />
-          <Text style={[styles.text2, styles.textTypo]}>$$$</Text>
-          <Text style={[styles.tioJavisFresh1, styles.tioTypo]}>{`City Slice Pizza and Pints`}</Text>
-          <View style={[styles.separator]} />
-          <View style={[styles.stars, styles.starsFlexBox]}>
-            <Image
-              style={styles.starIconLayout}
-              resizeMode="cover"
-              source={require("./assets/4_star.png")}
-            />
-          </View>
-          <Image
-            style={styles.groupItemPosition}
-            resizeMode="cover"
-            source={require("./assets/city_slice.png")}
-          />
-        </View>
-        <View style={[styles.groupView, styles.rectangleParentLayout]}>
-          <View style={[styles.groupInner, styles.groupLayout]} />
-          <Text style={[styles.text, styles.textTypo]}>$$</Text>
-          <Text style={[styles.tioJavisFresh1, styles.tioTypo]}>{`The Chimes`}</Text>
-          <View style={[styles.separator]} />
-          <View style={[styles.stars, styles.starsFlexBox]}>
-            <Image
-              style={styles.starIconLayout}
-              resizeMode="cover"
-              source={require("./assets/4.5_star.png")}
-            />
-          </View>
-          <Image
-            style={[styles.groupItemPosition]}
-            resizeMode="cover"
-            source={require("./assets/chimes.jpg")}
-          />
-        </View>
-        <View style={[styles.rectangleParent1, styles.rectangleParentLayout]}>
-          <View style={[styles.groupInner, styles.groupLayout]} />
-          <Text style={[styles.tioJavisFresh4, styles.tioTypo]}>{`Tio Javi's Bar & Grill`}</Text>
-          <View style={[styles.separator]} />
-          <View style={[styles.stars, styles.starsFlexBox]}>
-            <Image
-              style={styles.starIconLayout}
-              resizeMode="cover"
-              source={require("./assets/4.5_star.png")}
-            />
-          </View>
-          <Image
-            style={[styles.groupItemPosition]}
-            resizeMode="cover"
-            source={require("./assets/tio_javis.png")}
-          />
-          <Text style={[styles.text, styles.textTypo]}>$$</Text>
-        </View>
-        <View style={[styles.rectangleParent2, styles.rectangleParentLayout]}>
-          <View style={[styles.groupInner, styles.groupLayout]} />
-          <Text style={[styles.text, styles.textTypo]}>$$</Text>
-          <Text style={[styles.tioJavisFresh1, styles.tioTypo]}>{`Olive or Twist`}</Text>
-          <View style={[styles.separator]} />
-          <View style={[styles.stars, styles.starsFlexBox]}>
-            <Image
-              style={styles.starIconLayout}
-              resizeMode="cover"
-              source={require("./assets/4_star.png")}
-            />
-          </View>
-          <Image
-            style={styles.groupItemPosition}
-            resizeMode="cover"
-            source={require("./assets/olive_twist.jpg")}
-          />
-        </View>
-        <Text
-          style={[styles.dontSeeYour, styles.emailUsATypo]}
-        >{`Don't see your business or want to advertise? 
-  `}</Text>
-        <Pressable
-          style={[styles.emailUsARequestWrapper, styles.starsFlexBox]}
-          onPress={() => {}}
-        >
-          <Text style={[styles.emailUsA, styles.emailUsATypo]}>
-            Email us a request!
+
+        <Pressable style={({ pressed }) => [ styles.scrollBox, { backgroundColor: pressed ? "#4b5669" : "#323945", }, ]} onPress={tempPressLocation} android_ripple={{ color: "#b3b3b3", borderless: true }}>
+          <Text style={styles.scrollBoxText}>Bar</Text>
+        </Pressable>
+
+        <Pressable style={({ pressed }) => [ styles.scrollBox, { backgroundColor: pressed ? "#4b5669" : "#323945", }, ]} onPress={tempPressLocation} android_ripple={{ color: "#b3b3b3", borderless: true }}>
+          <Text style={styles.scrollBoxText}>Cafe</Text>
+        </Pressable>
+
+        <Pressable style={({ pressed }) => [ styles.scrollBox, { backgroundColor: pressed ? "#4b5669" : "#323945", }, ]} onPress={tempPressLocation} android_ripple={{ color: "#b3b3b3", borderless: true }}>
+          <Text style={styles.scrollBoxText}>Pizza</Text>
+        </Pressable>
+        
+        <Pressable style={({ pressed }) => [ styles.scrollBox, { backgroundColor: pressed ? "#4b5669" : "#323945", }, ]} onPress={tempPressLocation} android_ripple={{ color: "#b3b3b3", borderless: true }}>
+          <Text style={styles.scrollBoxText}>Burger</Text>
+        </Pressable>
+      </ScrollView>
+
+      <ScrollView contentContainerStyle={styles.contentContainer}>
+
+        <Pressable style={({ pressed }) => [ styles.box, { backgroundColor: pressed ? "#4b5669" : "#323945", }, ]} onPress={goToHighlandCoffees} android_ripple={{ color: "#b3b3b3", borderless: true }}>
+          <Image source={require("./assets/highland_coffees.png")} style={styles.boxImage} />
+          <Text style={styles.boxText}>
+            <Text style={{ color: 'white' }}>Highland Coffees</Text>{'\n'}
+            <Text style={{ color: 'white' }}>4.7</Text>
+            <Text style={{ color: '#FFA500' }}> ★</Text>
+            <Text style={{ color: 'white' }}> ⋅</Text>
+            <Text style={{ color: '#008080' }}> $</Text>
           </Text>
         </Pressable>
-        <View
-          style={[styles.searchPageRestaurantChild3, styles.searchChildLayout]}
-        />
-      </View>
-    </ScrollView>
+
+        <Pressable style={({ pressed }) => [ styles.box, { backgroundColor: pressed ? "#4b5669" : "#323945", }, ]} onPress={tempPressLocation} android_ripple={{ color: "#b3b3b3", borderless: true }}>
+          <Image source={require("./assets/rouls_deli.png")} style={styles.boxImage} />
+          <Text style={styles.boxText}>
+            <Text style={{ color: 'white' }}>Roul's Deli</Text>{'\n'}
+            <Text style={{ color: 'white' }}>4.2</Text>
+            <Text style={{ color: '#FFA500' }}> ★</Text>
+            <Text style={{ color: 'white' }}> ⋅</Text>
+            <Text style={{ color: '#008080' }}> $</Text>
+          </Text>
+        </Pressable>
+
+        <Pressable style={({ pressed }) => [ styles.box, { backgroundColor: pressed ? "#4b5669" : "#323945", }, ]} onPress={tempPressLocation} android_ripple={{ color: "#b3b3b3", borderless: true }}>
+          <Image source={require("./assets/chimes.png")} style={styles.boxImage} />
+          <Text style={styles.boxText}>
+            <Text style={{ color: 'white' }}>The Chimes</Text>{'\n'}
+            <Text style={{ color: 'white' }}>4.4</Text>
+            <Text style={{ color: '#FFA500' }}> ★</Text>
+            <Text style={{ color: 'white' }}> ⋅</Text>
+            <Text style={{ color: '#FF6600' }}> $$</Text>
+          </Text>
+        </Pressable>
+
+        <Pressable style={({ pressed }) => [ styles.box, { backgroundColor: pressed ? "#4b5669" : "#323945", }, ]} onPress={tempPressLocation} android_ripple={{ color: "#b3b3b3", borderless: true }}>
+          <Image source={require("./assets/city_slice.png")} style={styles.boxImage} />
+          <Text style={styles.boxText}>
+            <Text style={{ color: 'white' }}>City Slice Pizza and Pints</Text>{'\n'}
+            <Text style={{ color: 'white' }}>4.3</Text>
+            <Text style={{ color: '#FFA500' }}> ★</Text>
+            <Text style={{ color: 'white' }}> ⋅</Text>
+            <Text style={{ color: '#FF0032' }}> $$$</Text>
+          </Text>
+        </Pressable>
+        
+        <Pressable style={({ pressed }) => [ styles.box, { backgroundColor: pressed ? "#4b5669" : "#323945", }, ]} onPress={tempPressLocation} android_ripple={{ color: "#b3b3b3", borderless: true }}>
+          <Image source={require("./assets/tio_javis.png")} style={styles.boxImage} />
+          <Text style={styles.boxText}>
+            <Text style={{ color: 'white' }}>Tio Javi's Fresh Mex Bar & Grill</Text>{'\n'}
+            <Text style={{ color: 'white' }}>4.3</Text>
+            <Text style={{ color: '#FFA500' }}> ★</Text>
+            <Text style={{ color: 'white' }}> ⋅</Text>
+            <Text style={{ color: '#FF6600' }}> $$</Text>
+          </Text>
+        </Pressable>
+
+        <Pressable style={({ pressed }) => [ styles.box, { backgroundColor: pressed ? "#4b5669" : "#323945", }, ]} onPress={tempPressLocation} android_ripple={{ color: "#b3b3b3", borderless: true }}>
+          <Image source={require("./assets/olive_or_twist.png")} style={styles.boxImage} />
+          <Text style={styles.boxText}>
+            <Text style={{ color: 'white' }}>Olive or Twist</Text>{'\n'}
+            <Text style={{ color: 'white' }}>4.3</Text>
+            <Text style={{ color: '#FFA500' }}> ★</Text>
+            <Text style={{ color: 'white' }}> ⋅</Text>
+            <Text style={{ color: '#FF6600' }}> $$</Text>
+          </Text>
+        </Pressable>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  separator: {
-    height: 1,
-    width: "80%",
-    left: 45,
-    marginTop: -5,
-    backgroundColor: Color.colorGainsboro,
-  },
-  rectangleParentLayout: {
-    height: 94,
-    width: 341,
-    left: "50%",
-    marginLeft: -180,
-    position: "absolute",
-  },
-  groupLayout: {
-    borderRadius: Border.br_8xs,
-    left: 0,
-    top: 0,
-    height: 100,
-    width: 360,
-    position: "absolute",
-  },
-  batonRougeLaFlexBox: {
-    textAlign: "left",
-    color: Color.colorBlack,
-  },
-  starsFlexBox: {
-    flexDirection: "row",
-    position: "absolute",
-  },
-  starIconLayout: {
-    height: 13,
-    width: 90,
-  },
-  textTypo: {
-    height: 20,
-    width: 160,
-    left: 115,
-    top: 58,
-    //fontSize: FontSize.size_mini,
-    textAlign: "left",
-    //fontFamily: FontFamily.poppinsSemiBold,
-    fontWeight: "600",
-    position: "absolute",
-  },
-  groupItemPosition: {
-    height: 99,
-    width: 100,
-    left: 0,
-    top: 1,
-    position: "absolute",
-  },
-  groupItemPosition1: {
-    height: 30,
-    width: 60,
-    position: "absolute",
-  },
-  tioTypo: {
-    //fontSize: FontSize.size_mini,
-    textAlign: "left",
-    color: Color.colorBlack,
-    //fontFamily: FontFamily.poppinsSemiBold,
-    fontWeight: "600",
-    top: 14,
-    position: "absolute",
-  },
-  searchChildLayout1: {
-    height: 13,
-    left: 341,
-    width: 15,
-    position: "absolute",
-  },
-  emailUsATypo: {
-    //fontSize: FontSize.size_xs,
-    textAlign: "left",
-    //fontFamily: FontFamily.poppinsSemiBold,
-    fontWeight: "600",
-  },
-  searchChildLayout: {
-    width: 390,
-    left: 0,
-  },
-  lineIconLayout: {
-    height: 2,
-    position: "absolute",
-  },
-  streamlinehqLayout: {
-    height: 70,
-    width: 70,
-    top: 5,
-    position: "absolute",
-  },
-  iconLayout1: {
-    height: "100%",
-    width: "100%",
-  },
-  iconLayout: {
-    maxHeight: "100%",
-    maxWidth: "100%",
-  },
-  groupIconPosition: {
-    top: "11%",
-    position: "absolute",
-  },
-  groupChild8Layout: {
-    height: 87,
-    width: 390,
-    left: 0,
-    position: "absolute",
-  },
-  searchTypo: {
-    top: "60.92%",
-    //fontSize: FontSize.size_xs,
-    textAlign: "left",
-    color: Color.colorBlack,
-    //fontFamily: FontFamily.poppinsSemiBold,
-    fontWeight: "600",
-    position: "absolute",
-  },
-  groupChild: {
-    backgroundColor: "#d9d9d9",
-  },
-  tioJavisFresh: {
-    fontSize: 13,
-    //fontFamily: FontFamily.poppinsSemiBold,
-    fontWeight: "600",
-    textAlign: "left",
-    position: "absolute",
-    left: 112,
-    top: 14,
-  },
-  starIcon1: {
-    marginLeft: 4.94,
-  },
-  stars: {
-    top: 41,
-    borderRadius: Border.br_11xl,
-    left: 113,
-  },
-  text: {
-    color: Color.colorOrangered,
-  },
-  groupItem: {
-    borderRadius: Border.br_11xl,
-  },
-  rectangleParent: {
-    top: 30,
-  },
-  groupInner: {
-    backgroundColor: Color.colorWhitesmoke_100,
-  },
-  text1: {
-    color: Color.colorDarkcyan,
-  },
-  tioJavisFresh1: {
-    left: 112,
-  },
-  text2: {
-    color: "#ff0022",
-  },
-  rectangleContainer: {
-    top: 360,
-  },
-  groupView: {
-    top: 250,
-  },
-  tioJavisFresh4: {
-    left: 113,
-  },
-  rectangleParent1: {
-    top: 140,
-  },
-  rectangleParent2: {
-    top: 470,
-  },
-  searchPageRestaurantChild: {
-    top: 647,
-  },
-  searchPageRestaurantItem: {
-    top: 523,
-  },
-  searchPageRestaurantInner: {
-    top: 408,
-  },
-  vectorIcon: {
-    top: 766,
-  },
-  searchPageRestaurantChild1: {
-    top: 292,
-  },
-  dontSeeYour: {
-    top: 650,
-    left: 28,
-    width: 339,
-    height: 18,
-    color: Color.colorBlack,
-    fontSize: FontSize.size_xs,
-    position: "absolute",
-  },
-  emailUsA: {
-    color: Color.colorDarkcyan,
-  },
-  emailUsARequestWrapper: {
-    top: 670,
-    left: 18,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 10,
-  },
-  searchPageRestaurantChild2: {
-    top: 768,
-  },
-  lineIcon: {
-    top: 50,
-    left: 46,
-    width: 296,
-  },
-  ellipseIcon: {
-    left: 100,
-  },
-  searchPageRestaurantChild4: {
-    left: 229,
-  },
   icon: {
-    overflow: "hidden",
+    top: -1,
   },
-  streamlinehqNatureEcologyWo: {
-    left: "50%",
-    marginLeft: -176,
+  searchBarContainer: {
+    flexDirection: 'row',
+    height: 40, 
+    padding: 10,
+    backgroundColor: "#323945",
+    borderRadius: 5,
+    margin: 10,
+    paddingHorizontal: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
-  streamlinehqFoodKitchenwareIcon: {
-    left: 114,
-    overflow: "hidden",
+  searchBarBox: {
+    color: 'white',
+    marginHorizontal: 10,
   },
-  searchPageRestaurantChild5: {
-    height: "4.78%",
-    width: "72.05%",
-    top: "9.93%",
-    right: "11.54%",
-    bottom: "85.29%",
-    left: "16.41%",
-    borderRadius: 10,
-    backgroundColor: Color.colorWhitesmoke_200,
-    borderStyle: "solid",
-    borderColor: Color.colorWhitesmoke_200,
-    borderWidth: 1,
-    position: "absolute",
+  scrollBarContainer: {
+    padding: 0,
+    marginBottom: 10,
   },
-  groupIcon: {
-    height: "2.29%",
-    width: "6.15%",
-    right: "72.82%",
-    bottom: "86.53%",
-    left: "21.03%",
-    top: "11.17%",
-    position: "absolute",
+  scrollBox:{
+    width: 100,
+    height: 30,
+    backgroundColor: "#323945",
+    borderRadius: 20,
+    marginVertical: 10,
+    marginHorizontal: 10,
+    justifyContent: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
-  batonRougeLa: {
-    height: "2.67%",
-    width: "53.08%",
-    left: "30%",
-    //fontSize: FontSize.size_base,
-    //fontFamily: FontFamily.poppinsRegular,
-    textAlign: "left",
-    color: Color.colorBlack,
-  },
-  findYourNext: {
-    height: "3.72%",
-    width: "65.64%",
-    top: "4.49%",
-    left: "20.77%",
-    fontSize: 26,
-    //fontFamily: FontFamily.poppinsSemiBold,
-    fontWeight: "600",
-    textAlign: "left",
-    position: "absolute",
-  },
-  groupChild8: {
-    backgroundColor: "#f6f6f6",
-    top: 0,
-  },
-  icon1: {
-    height: "100%",
-    width: "100%",
-  },
-  streamlinehqTravelMapLocati: {
-    left: "78.46%",
-    right: "9.23%",
-  },
-  vectorIcon1: {
-    width: 39,
-    height: 46,
-  },
-  streamlinehqTravelMapLocati1: {
-    height: "54.84%",
-    width: "12.56%",
-    top: "8.21%",
-    right: "43.97%",
-    bottom: "36.95%",
-    left: "43.46%",
-    paddingHorizontal: 5,
-    paddingVertical: 1,
-    overflow: "hidden",
-  },
-  streamlinehqTravelMapLocatiIcon: {
-    right: "78.46%",
-    left: "9.23%",
-    maxHeight: "100%",
-    maxWidth: "100%",
-    overflow: "hidden",
-  },
-  search: {
-    left: "10%",
-  },
-  profile: {
-    left: "79.49%",
-  },
-  favorites: {
-    left: "42.31%",
-  },
-  rectangleParent3: {
-    top: 757,
-  },
-  searchPageRestaurantChild6: {
-    top: 755,
-    width: 390,
-    left: 0,
-  },
-  searchPageRestaurant: {
-    flex: 1,
-    height: 1047,
-    overflow: "hidden",
-    width: "100%",
-    backgroundColor: Color.colorWhite,
-  },
-  currentDestinationText: {
+  scrollBoxText: {
+    color: 'white',
     textAlign: "center",
-    //fontSize: FontSize.size_base,
-    //fontFamily: FontFamily.poppinsSemiBold,
-    color: Color.colorBlack,
-    marginTop: 23,
-    marginBottom: 20,
-    left: 15,
+    fontWeight: "bold",
   },
-  rankText: {
-    //fontSize: FontSize.size_mini,
-    //fontFamily: FontFamily.poppinsSemiBold,
-    fontWeight: "600",
-    textAlign: "left",
-    color: Color.colorBlack,
-    position: "absolute",
-    left: 6, // Adjust as needed for proper alignment
-    top: 14, // Adjust as needed for proper alignment
+  contentContainer: {
+    alignItems: "center",
   },
-  searchBar: {
+  container: {
+    flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    padding: 10,
-    backgroundColor: "#008C8F",
   },
-
-  searchBarText: {
-    width: 300,
-    padding: 10,
-    borderRadius: 20, // Adjust the borderRadius as needed
-    backgroundColor: "#ffffff",
-    marginBottom: 10,
-    //fontSize: FontSize.size_base,
-    //fontFamily: FontFamily.poppinsSemiBold,
-    color: Color.colorBlack,
-    textAlign: "center", // Center the text
-    marginTop: 37, // Adjust the marginTop to lower the text
+  box: {
+    width: "90%",
+    height: 200,
+    backgroundColor: "#323945",
+    borderRadius: 9,
+    marginVertical: 10,
+    justifyContent: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  boxText: {
+    top: -5,
+    left: 10,
+    textAlign: "left",
+    fontWeight: "bold",
+  },
+  boxImage: {
+    width: "100%",
+    height: "70%",
+    borderRadius: 9,
+    top: -10,
+    resizeMode: "cover",
   },
 });
 
-export default SearchPageRestaurant;
+export default SearchPage;

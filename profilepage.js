@@ -1,9 +1,9 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Pressable } from "react-native";
+import { SafeAreaView, View, Text, StyleSheet, TouchableOpacity, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native"; // Import useNavigation
-import FontAwesome from "react-native-vector-icons/FontAwesome"; // Import FontAwesome
+import { FontAwesome } from '@expo/vector-icons'; // Import FontAwesome
 
-const Profile = () => {
+const ProfilePage = () => {
   // Example function to handle logout
 //  const handleLogout = () => {
     // Perform logout operations...
@@ -23,7 +23,7 @@ const Profile = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.headerContainer}>
         <Text style={styles.header}>Hello, Clarice</Text>
         <View style={styles.headerUnderline} />
@@ -57,7 +57,7 @@ const Profile = () => {
         />
         <Text style={styles.menuText}> Logout</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -102,4 +102,4 @@ const styles = StyleSheet.create({
   // ... any additional styles you need
 });
 
-export default Profile;
+export default ProfilePage;

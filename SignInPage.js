@@ -1,5 +1,5 @@
 import React from "react";
-import { TextInput, Image, SafeAreaView, Text, StyleSheet, Pressable } from "react-native";
+import { ScrollView, TextInput, Image, SafeAreaView, Text, StyleSheet, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native"; // Import useNavigation
 import { FontAwesome } from '@expo/vector-icons'; // Import FontAwesome
 
@@ -14,19 +14,21 @@ const SignInPage = () => {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#1a1c21'}}>
-      <Image source={require('./assets/TripTrakLogo.png')} style={styles.logo} />
-      <Text style={styles.signInText}>Sign In</Text>
-      <TextInput style={styles.searchBarContainer} placeholder="Email" placeholderTextColor="gray" />
-      <TextInput style={styles.searchBarContainer} placeholder="Password" placeholderTextColor="gray" secureTextEntry={true} />
-      <Pressable style={({ pressed }) => [ styles.signInButton, { backgroundColor: pressed ? "#0089a3" : "#008080", alignSelf: 'center', }, ]} onPress={goToSearchPage} android_ripple={{ color: "#b3b3b3", borderless: true }}>
-        <Text style={{color:'white', fontWeight: 'bold', }}>Sign In</Text>
-      </Pressable>
-      <Text style={styles.signUpButton}>
-        <Text>New to TripTrak?</Text>
-        <Pressable onPress={goToSignUpPage}>
-          <Text style={{color:'white'}}> Sign Up Now!</Text>
+      <ScrollView>
+        <Image source={require('./assets/TripTrakLogo.png')} style={styles.logo} />
+        <Text style={styles.signInText}>Sign In</Text>
+        <TextInput style={styles.searchBarContainer} placeholder="Email" placeholderTextColor="gray" />
+        <TextInput style={styles.searchBarContainer} placeholder="Password" placeholderTextColor="gray" secureTextEntry={true} />
+        <Pressable style={({ pressed }) => [ styles.signInButton, { backgroundColor: pressed ? "#0089a3" : "#008080", alignSelf: 'center', }, ]} onPress={goToSearchPage} android_ripple={{ color: "#b3b3b3", borderless: true }}>
+          <Text style={{color:'white', fontWeight: 'bold', }}>Sign In</Text>
         </Pressable>
-      </Text>
+        <Text style={styles.signUpButton}>
+          <Text>New to TripTrak?</Text>
+          <Pressable onPress={goToSignUpPage}>
+            <Text style={{color:'white'}}> Sign Up Now!</Text>
+          </Pressable>
+        </Text>
+      </ScrollView>
     </SafeAreaView>
   );
 }

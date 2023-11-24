@@ -1,5 +1,5 @@
 import React from "react";
-import { TextInput, Image, SafeAreaView, Text, StyleSheet, Pressable } from "react-native";
+import { ScrollView, TextInput, Image, SafeAreaView, Text, StyleSheet, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native"; // Import useNavigation
 import { FontAwesome } from '@expo/vector-icons'; // Import FontAwesome
 
@@ -11,21 +11,23 @@ const SignUpPage = () => {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#1a1c21'}}>
-        <Image source={require('./assets/TripTrakLogo.png')} style={styles.logo} />
-        <Text style={styles.signInText}>Sign Up</Text>
-        <TextInput style={styles.searchBarContainer} placeholder="Email" placeholderTextColor="gray" />
-        <TextInput style={styles.searchBarContainer} placeholder="Password" placeholderTextColor="gray" secureTextEntry={true} />
-        <TextInput style={styles.searchBarContainer} placeholder="Re-type Password" placeholderTextColor="gray" secureTextEntry={true} />
-        <TextInput style={styles.searchBarContainer} placeholder="First and Last Name" placeholderTextColor="gray" />
-        <Pressable style={({ pressed }) => [ styles.signInButton, { backgroundColor: pressed ? "#0089a3" : "#008080", alignSelf: 'center', }, ]} onPress={goToSignInPage} android_ripple={{ color: "#b3b3b3", borderless: true }}>
-            <Text style={{color:'white', fontWeight: 'bold', }}>Sign Up</Text>
-        </Pressable>
-        <Text style={styles.signUpButton}>
-        <Text>Already have an account?</Text>
-        <Pressable onPress={goToSignInPage}>
-          <Text style={{color:'white'}}> Sign In Now!</Text>
-        </Pressable>
-      </Text>
+        <ScrollView>
+            <Image source={require('./assets/TripTrakLogo.png')} style={styles.logo} />
+            <Text style={styles.signInText}>Sign Up</Text>
+            <TextInput style={styles.searchBarContainer} placeholder="Email" placeholderTextColor="gray" />
+            <TextInput style={styles.searchBarContainer} placeholder="Password" placeholderTextColor="gray" secureTextEntry={true} />
+            <TextInput style={styles.searchBarContainer} placeholder="Re-type Password" placeholderTextColor="gray" secureTextEntry={true} />
+            <TextInput style={styles.searchBarContainer} placeholder="First and Last Name" placeholderTextColor="gray" />
+            <Pressable style={({ pressed }) => [ styles.signInButton, { backgroundColor: pressed ? "#0089a3" : "#008080", alignSelf: 'center', }, ]} onPress={goToSignInPage} android_ripple={{ color: "#b3b3b3", borderless: true }}>
+                <Text style={{color:'white', fontWeight: 'bold', }}>Sign Up</Text>
+            </Pressable>
+            <Text style={styles.signUpButton}>
+                <Text>Already have an account?</Text>
+                <Pressable onPress={goToSignInPage}>
+                    <Text style={{color:'white'}}> Sign In Now!</Text>
+                </Pressable>
+            </Text>
+      </ScrollView>
     </SafeAreaView>
   );
 }

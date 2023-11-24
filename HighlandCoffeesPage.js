@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { TouchableWithoutFeedback, Dimensions, FlatList, StyleSheet, View, Text, Image, Pressable, ScrollView, SafeAreaView, Alert, Button, Linking } from "react-native";
+import { TouchableWithoutFeedback, Dimensions, FlatList, StyleSheet, View, Text, Image, Pressable, ScrollView, SafeAreaView, Linking } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -94,12 +94,17 @@ const HighlandCoffeesPage = () => {
     Linking.openURL('https://www.yelp.com/biz/highland-coffees-baton-rouge');
   }
 
+  const goToGoogleMaps = () => {
+    Linking.openURL('https://maps.app.goo.gl/F8ASf8UipEDtNiw86');
+  }
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#1a1c21'}}>
-      <View>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 10 }}>
         <Pressable onPress={goBackAPage}>
-          <FontAwesome name="arrow-left" size={20} color="white" style={{padding: 10,}} />
+          <FontAwesome name="arrow-left" size={20} color="white" style={{ padding: 10,  }} />
         </Pressable>
+        <FontAwesome name="heart" size={20} color="white" style={{ padding: 10, }} />
       </View>
 
       <ScrollView>
@@ -115,7 +120,7 @@ const HighlandCoffeesPage = () => {
           <Text style={styles.review}>4.5 (130 Reviews) </Text>
         </View>
 
-        <Text style={styles.other}>$ ⋅ Cafe</Text>
+        <Text style={styles.priceAndType}>$ ⋅ Cafe</Text>
         
         <Text style={styles.otherTitles}>About</Text>
         <TouchableWithoutFeedback onPress={expandAbout}>
@@ -123,11 +128,14 @@ const HighlandCoffeesPage = () => {
         </TouchableWithoutFeedback>
         <Text style={styles.other} onPress={goToWebsite}>Visit Website</Text>
 
+        <Text style={styles.otherTitles}>Address</Text>
+        <Text style={styles.other} onPress={goToGoogleMaps}>3350 Highland Rd, Baton Rouge, LA 70802</Text>
+
         <Text style={styles.otherTitles}>Reviews</Text>
         <View style={styles.line} />
         <View style={styles.reviewContainer}>
           <View style={styles.imageContainer}>
-            <Image source={require('./assets/person.jpg')} style={styles.image} />
+            <Image source={require('./assets/highland_coffees_photos/person.jpg')} style={styles.image} />
           </View>
           <View style={styles.textContainer}>
             <Text style={styles.text}>Hong-an T.</Text>
@@ -148,7 +156,7 @@ const HighlandCoffeesPage = () => {
 
         <View style={styles.reviewContainer}>
           <View style={styles.imageContainer}>
-            <Image source={require('./assets/person2.png')} style={styles.image} />
+            <Image source={require('./assets/highland_coffees_photos/person2.png')} style={styles.image} />
           </View>
           <View style={styles.textContainer}>
             <Text style={styles.text}>Mya H.</Text>
@@ -169,7 +177,7 @@ const HighlandCoffeesPage = () => {
 
         <View style={styles.reviewContainer}>
           <View style={styles.imageContainer}>
-            <Image source={require('./assets/person3.jpg')} style={styles.image} />
+            <Image source={require('./assets/highland_coffees_photos/person3.jpg')} style={styles.image} />
           </View>
           <View style={styles.textContainer}>
             <Text style={styles.text}>Ruth D.</Text>
@@ -207,7 +215,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 20,
     fontWeight: "bold",
-    marginVertical: 10,
+    marginTop: 10,
   },
   reviewTop :{
     flexDirection: 'row', 
@@ -227,12 +235,21 @@ const styles = StyleSheet.create({
     fontSize: 15,
     marginVertical: 5,
   },
+  priceAndType: {
+    color: 'white',
+    textAlign: "center",
+    fontSize: 15,
+    top: -10,
+  },
   other: {
     marginHorizontal: 10,
     color: 'white',
     textAlign: "center",
     fontSize: 15,
     marginVertical: 5,
+    fontStyle: 'italic',
+    textDecorationLine: 'underline',
+
   },
   reviewComment: {
     marginHorizontal: 10,

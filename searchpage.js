@@ -16,7 +16,7 @@ const SearchPage = () => {
     <SafeAreaView style={{ flex: 1, backgroundColor: '#1a1c21'}}>
       <View style={styles.searchBarContainer}>
         <FontAwesome name="search" size={20} color="white" style={styles.icon} />
-        <TextInput style={{ marginHorizontal: 10, color: 'white'}} placeholder="Search Your Destination" placeholderTextColor="white" />
+        <TextInput style={{ marginHorizontal: 10, color: 'white'}} placeholder="Search Your Destination" placeholderTextColor="gray" />
       </View>
 
       <ScrollView contentContainerStyle={styles.scrollBarContainer} horizontal={true}>
@@ -55,9 +55,11 @@ const SearchPage = () => {
             <Text style={{ color: '#008080' }}> $</Text>
             <Text style={{color: 'white'}}> ⋅ Cafe </Text>
           </Text>
+          <FontAwesome name="heart" size={30} color="white" style={styles.icon1} />
           <Text style={styles.ranking}>
             <Text style={{ color: 'gold', fontSize: 30 }}>1</Text>
           </Text>
+          
         </Pressable>
 
         <Pressable style={({ pressed }) => [ styles.box, { backgroundColor: pressed ? "#4b5669" : "#323945", }, ]} onPress={tempPressLocation} android_ripple={{ color: "#b3b3b3", borderless: true }}>
@@ -71,6 +73,7 @@ const SearchPage = () => {
             <Text style={{ color: '#008080' }}> $</Text>
             <Text style={{color: 'white'}}> ⋅ Burger</Text>
           </Text>
+          <FontAwesome name="heart" size={30} color="white" style={styles.icon1} />
           <Text style={styles.ranking}>
             <Text style={{ color: 'silver', fontSize: 30 }}>2</Text>
           </Text>
@@ -87,6 +90,7 @@ const SearchPage = () => {
             <Text style={{ color: '#FF6600' }}> $$</Text>
             <Text style={{color: 'white'}}> ⋅ Cajun | Dining</Text>
           </Text>
+          <FontAwesome name="heart-o" size={30} color="white" style={styles.icon1} />
           <Text style={styles.ranking}>
             <Text style={{ color: 'brown', fontSize: 30 }}>3</Text>
           </Text>
@@ -103,6 +107,7 @@ const SearchPage = () => {
             <Text style={{ color: '#FF0032' }}> $$$</Text>
             <Text style={{color: 'white'}}> ⋅ Pizza | Bar | Dining</Text>
           </Text>
+          <FontAwesome name="heart-o" size={30} color="white" style={styles.icon1} />
         </Pressable>
         
         <Pressable style={({ pressed }) => [ styles.box, { backgroundColor: pressed ? "#4b5669" : "#323945", }, ]} onPress={tempPressLocation} android_ripple={{ color: "#b3b3b3", borderless: true }}>
@@ -116,6 +121,7 @@ const SearchPage = () => {
             <Text style={{ color: '#FF6600' }}> $$</Text>
             <Text style={{color: 'white'}}> ⋅ Mexican | Dining | Bar</Text>
           </Text>
+          <FontAwesome name="heart" size={30} color="white" style={styles.icon1} />
         </Pressable>
 
         <Pressable style={({ pressed }) => [ styles.box, { backgroundColor: pressed ? "#4b5669" : "#323945", }, ]} onPress={tempPressLocation} android_ripple={{ color: "#b3b3b3", borderless: true }}>
@@ -129,6 +135,7 @@ const SearchPage = () => {
             <Text style={{ color: '#FF6600' }}> $$</Text>
             <Text style={{color: 'white'}}> ⋅ Dining | Bar </Text>
           </Text>
+          <FontAwesome name="heart-o" size={30} color="white" style={styles.icon1} />
         </Pressable>
       </ScrollView>
     </SafeAreaView>
@@ -138,6 +145,10 @@ const SearchPage = () => {
 const styles = StyleSheet.create({
   icon: {
     top: -1,
+  },
+  icon1: {
+    top: -185,
+    left: 300,
   },
   searchBarContainer: {
     flexDirection: 'row',
@@ -212,7 +223,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   ranking: {
-    top: -45,
+    top: -75,
     right: 20,
     textAlign: "right",
     fontWeight: "bold",

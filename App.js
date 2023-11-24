@@ -7,6 +7,7 @@ import SearchPage from './SearchPage';
 import HighlandCoffeesPage from './HighlandCoffeesPage';
 import FavoritesPage from './FavoritesPage';
 import ProfilePage from './ProfilePage';
+import SignInPage from './SignInPage';
 
 const Stack = createStackNavigator();
 function PageNav () {
@@ -14,7 +15,18 @@ function PageNav () {
       <Stack.Navigator initialRouteName="SearchPage">
         <Stack.Screen name="SearchPage" component={SearchPage} options={{ headerShown: false }} />
         <Stack.Screen name="HighlandCoffeesPage" component={HighlandCoffeesPage} options={{ headerShown: false }} />
+        <Stack.Screen name="SignInPage" component={SignInPage} options={{ headerShown: false }} />
       </Stack.Navigator>
+  );
+}
+
+const AuthStack = createStackNavigator();
+function AuthStackNav() {
+  return (
+    <AuthStack.Navigator initialRouteName="SignInPage" screenOptions={{ headerShown: false }}>
+      <AuthStack.Screen name="SignInPage" component={SignInPage} />
+      <AuthStack.Screen name="SearchPage" component={SearchPage} />
+    </AuthStack.Navigator>
   );
 }
 
@@ -58,20 +70,21 @@ const ref = createNavigationContainerRef();
 export default function App() {
   const [routeName, setRouteName] = useState();
   return (
-    <NavigationContainer 
+    <NavigationContainer
       ref={ref}
-      onReady={() => 
-      {
-        setRouteName(ref.getCurrentRoute().name)
+      onReady={() => {
+        setRouteName(ref.getCurrentRoute().name);
       }}
-      onStateChange={async () => 
-      {
-        const previousRouteName = routeName;
+      onStateChange={async () => {
         const currentRouteName = ref.getCurrentRoute().name;
         setRouteName(currentRouteName);
       }}
     >
-      <TabNav routeName={routeName} />
+      {routeName === 'SignInPage' ? (
+        <AuthStackNav />
+      ) : (
+        <TabNav routeName={routeName} />
+      )}
     </NavigationContainer>
   );
 }

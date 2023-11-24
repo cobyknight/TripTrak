@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Pressable } from "react-native";
+import { SafeAreaView, View, Text, StyleSheet, TouchableOpacity, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome } from '@expo/vector-icons';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';

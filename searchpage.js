@@ -16,7 +16,7 @@ const SearchPage = () => {
     <SafeAreaView style={{ flex: 1, backgroundColor: '#1a1c21'}}>
       <View style={styles.searchBarContainer}>
         <FontAwesome name="search" size={20} color="white" style={styles.icon} />
-        <TextInput style={styles.searchBarBox} placeholder="Search Your Destination" placeholderTextColor="white" />
+        <TextInput style={{ marginHorizontal: 10, color: 'white'}} placeholder="Search Your Destination" placeholderTextColor="white" />
       </View>
 
       <ScrollView contentContainerStyle={styles.scrollBarContainer} horizontal={true}>
@@ -45,11 +45,11 @@ const SearchPage = () => {
       <ScrollView contentContainerStyle={styles.contentContainer}>
 
         <Pressable style={({ pressed }) => [ styles.box, { backgroundColor: pressed ? "#4b5669" : "#323945", }, ]} onPress={goToHighlandCoffees} android_ripple={{ color: "#b3b3b3", borderless: true }}>
-          <Image source={require("./assets/highland_coffees.png")} style={styles.boxImage} />
+          <Image source={require("./assets/places/highland_coffees.png")} style={styles.boxImage} />
           <Text style={styles.boxText}>
             <Text style={{ color: 'white' }}>Highland Coffees</Text>{'\n'}
             <Text style={{ color: 'white', fontSize: 4, }}> </Text>{'\n'}
-            <Text style={{ color: 'white' }}>4.7</Text>
+            <Text style={{ color: 'white', }}>4.5</Text>
             <Text style={{ color: '#FFA500' }}> ★</Text>
             <Text style={{ color: 'white' }}> ⋅</Text>
             <Text style={{ color: '#008080' }}> $</Text>
@@ -61,11 +61,11 @@ const SearchPage = () => {
         </Pressable>
 
         <Pressable style={({ pressed }) => [ styles.box, { backgroundColor: pressed ? "#4b5669" : "#323945", }, ]} onPress={tempPressLocation} android_ripple={{ color: "#b3b3b3", borderless: true }}>
-          <Image source={require("./assets/rouls_deli.png")} style={styles.boxImage} />
+          <Image source={require("./assets/places/rouls_deli.png")} style={styles.boxImage} />
           <Text style={styles.boxText}>
             <Text style={{ color: 'white' }}>Roul's Deli</Text>{'\n'}
             <Text style={{ color: 'white', fontSize: 4, }}> </Text>{'\n'}
-            <Text style={{ color: 'white' }}>4.2</Text>
+            <Text style={{ color: 'white' }}>4.3</Text>
             <Text style={{ color: '#FFA500' }}> ★</Text>
             <Text style={{ color: 'white' }}> ⋅</Text>
             <Text style={{ color: '#008080' }}> $</Text>
@@ -77,11 +77,11 @@ const SearchPage = () => {
         </Pressable>
 
         <Pressable style={({ pressed }) => [ styles.box, { backgroundColor: pressed ? "#4b5669" : "#323945", }, ]} onPress={tempPressLocation} android_ripple={{ color: "#b3b3b3", borderless: true }}>
-          <Image source={require("./assets/chimes.png")} style={styles.boxImage} />
+          <Image source={require("./assets/places/chimes.png")} style={styles.boxImage} />
           <Text style={styles.boxText}>
             <Text style={{ color: 'white' }}>The Chimes</Text>{'\n'}
             <Text style={{ color: 'white', fontSize: 4, }}> </Text>{'\n'}
-            <Text style={{ color: 'white' }}>4.4</Text>
+            <Text style={{ color: 'white' }}>4.2</Text>
             <Text style={{ color: '#FFA500' }}> ★</Text>
             <Text style={{ color: 'white' }}> ⋅</Text>
             <Text style={{ color: '#FF6600' }}> $$</Text>
@@ -93,7 +93,7 @@ const SearchPage = () => {
         </Pressable>
 
         <Pressable style={({ pressed }) => [ styles.box, { backgroundColor: pressed ? "#4b5669" : "#323945", }, ]} onPress={tempPressLocation} android_ripple={{ color: "#b3b3b3", borderless: true }}>
-          <Image source={require("./assets/city_slice.png")} style={styles.boxImage} />
+          <Image source={require("./assets/places/city_slice.png")} style={styles.boxImage} />
           <Text style={styles.boxText}>
             <Text style={{ color: 'white' }}>City Slice Pizza and Pints</Text>{'\n'}
             <Text style={{ color: 'white', fontSize: 4, }}> </Text>{'\n'}
@@ -101,16 +101,16 @@ const SearchPage = () => {
             <Text style={{ color: '#FFA500' }}> ★</Text>
             <Text style={{ color: 'white' }}> ⋅</Text>
             <Text style={{ color: '#FF0032' }}> $$$</Text>
-            <Text style={{color: 'white'}}> ⋅ Pizza</Text>
+            <Text style={{color: 'white'}}> ⋅ Pizza | Bar | Dining</Text>
           </Text>
         </Pressable>
         
         <Pressable style={({ pressed }) => [ styles.box, { backgroundColor: pressed ? "#4b5669" : "#323945", }, ]} onPress={tempPressLocation} android_ripple={{ color: "#b3b3b3", borderless: true }}>
-          <Image source={require("./assets/tio_javis.png")} style={styles.boxImage} />
+          <Image source={require("./assets/places/tio_javis.png")} style={styles.boxImage} />
           <Text style={styles.boxText}>
             <Text style={{ color: 'white' }}>Tio Javi's Fresh Mex Bar & Grill</Text>{'\n'}
             <Text style={{ color: 'white', fontSize: 4, }}> </Text>{'\n'}
-            <Text style={{ color: 'white' }}>4.3</Text>
+            <Text style={{ color: 'white' }}>4.2</Text>
             <Text style={{ color: '#FFA500' }}> ★</Text>
             <Text style={{ color: 'white' }}> ⋅</Text>
             <Text style={{ color: '#FF6600' }}> $$</Text>
@@ -119,11 +119,11 @@ const SearchPage = () => {
         </Pressable>
 
         <Pressable style={({ pressed }) => [ styles.box, { backgroundColor: pressed ? "#4b5669" : "#323945", }, ]} onPress={tempPressLocation} android_ripple={{ color: "#b3b3b3", borderless: true }}>
-          <Image source={require("./assets/olive_or_twist.png")} style={styles.boxImage} />
+          <Image source={require("./assets/places/olive_or_twist.png")} style={styles.boxImage} />
           <Text style={styles.boxText}>
             <Text style={{ color: 'white' }}>Olive or Twist</Text>{'\n'}
             <Text style={{ color: 'white', fontSize: 4, }}> </Text>{'\n'}
-            <Text style={{ color: 'white' }}>4.3</Text>
+            <Text style={{ color: 'white' }}>4.1</Text>
             <Text style={{ color: '#FFA500' }}> ★</Text>
             <Text style={{ color: 'white' }}> ⋅</Text>
             <Text style={{ color: '#FF6600' }}> $$</Text>
@@ -155,10 +155,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-  },
-  searchBarBox: {
-    color: 'white',
-    marginHorizontal: 10,
   },
   scrollBarContainer: {
     padding: 0,

@@ -50,7 +50,7 @@ function TabNav () {
         {
           iconName = focused ? 'heart' : 'heart-o';
         }
-        else if (route.name === 'Profile')
+        else if (route.name === 'Account')
         {
           iconName = focused ? 'user' : 'user-o';
         }
@@ -61,7 +61,7 @@ function TabNav () {
       >
         <Tab.Screen name="Home" component={PageNav} options={{ headerShown: false }} />
         <Tab.Screen name="Favorites" component={FavoritesPage} options={{ headerShown: false } }/>
-        <Tab.Screen name="Profile" component={ProfilePage} options={{ headerShown: false }} />
+        <Tab.Screen name="Account" component={ProfilePage} options={{ headerShown: false }} />
       </Tab.Navigator>
   );
 }

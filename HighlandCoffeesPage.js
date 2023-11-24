@@ -129,7 +129,7 @@ const HighlandCoffeesPage = () => {
         <Text style={styles.other} onPress={goToWebsite}>Visit Website</Text>
 
         <Text style={styles.otherTitles}>Address</Text>
-        <Text style={styles.other} onPress={goToGoogleMaps}>3350 Highland Rd, Baton Rouge, LA 70802</Text>
+        <Text style={styles.other} onPress={goToGoogleMaps}>3350 Highland Road{'\n'}Baton Rouge, LA</Text>
 
         <Text style={styles.otherTitles}>Reviews</Text>
         <View style={styles.line} />

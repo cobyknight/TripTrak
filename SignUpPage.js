@@ -1,121 +1,91 @@
-import React, { useState } from "react";
-import { View, Text, TextInput, Pressable, Image, StyleSheet, Alert } from "react-native";
-import { FontSize } from "./GlobalStyles";
-import { useNavigation } from "@react-navigation/native";
-import { handleSignUp } from './authService'; // Import authentication handle methods
+import React from "react";
+import { TextInput, Image, SafeAreaView, Text, StyleSheet, Pressable } from "react-native";
+import { useNavigation } from "@react-navigation/native"; // Import useNavigation
+import { FontAwesome } from '@expo/vector-icons'; // Import FontAwesome
 
 const SignUpPage = () => {
-
   const navigation = useNavigation();
-  const [signUpEmail, setSignUpEmail] = useState('');
-  const [signUpPassword, setSignUpPassword] = useState('');
-  const [firstName, setFirstName] = useState("");
-  const [message, setMessage] = useState('');
-
-  const handlePress = () => {
-    navigation.navigate("Profile");
+  const goToSignInPage = () => {
+    navigation.navigate("SignInPage")
   };
-
-  const handleSignUpClick = () => {
-    handleSignUp(signUpEmail, signUpPassword, firstName, setMessage);
-  };
-
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.signUp}>Sign-Up</Text>
-      <Pressable style={styles.arrowLeft1} onPress={handlePress}>
-        <Image
-          style={[styles.icon, styles.iconLayout]}
-          resizeMode="cover"
-          source={require("./assets/left_arrow.png")}
-        />
-      </Pressable>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="Email Address"
-          value={signUpEmail}
-          onChangeText={setSignUpEmail}
-        />
-                <TextInput
-          style={styles.input}
-          placeholder="Password"
-          value={signUpPassword}
-          secureTextEntry
-          onChangeText={setSignUpPassword}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="First Name"
-          value={firstName}
-          onChangeText={setFirstName}
-        />
-        <Pressable style={styles.button} onPress={handleSignUpClick}>
-          <Text style={styles.buttonText}>Sign Up</Text>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#1a1c21'}}>
+        <Image source={require('./assets/TripTrakLogo.png')} style={styles.logo} />
+        <Text style={styles.signInText}>Sign Up</Text>
+        <TextInput style={styles.searchBarContainer} placeholder="Email" placeholderTextColor="gray" />
+        <TextInput style={styles.searchBarContainer} placeholder="Password" placeholderTextColor="gray" secureTextEntry={true} />
+        <TextInput style={styles.searchBarContainer} placeholder="Re-type Password" placeholderTextColor="gray" secureTextEntry={true} />
+        <TextInput style={styles.searchBarContainer} placeholder="First and Last Name" placeholderTextColor="gray" />
+        <Pressable style={({ pressed }) => [ styles.signInButton, { backgroundColor: pressed ? "#0089a3" : "#008080", alignSelf: 'center', }, ]} onPress={goToSignInPage} android_ripple={{ color: "#b3b3b3", borderless: true }}>
+            <Text style={{color:'white', fontWeight: 'bold', }}>Sign Up</Text>
         </Pressable>
-      </View>
-      <View style={styles.errorContainer}>
-        <Text style={styles.errorMessage}>{message}</Text>
-      </View>
-    </View>
+        <Text style={styles.signUpButton}>
+        <Text>Already have an account?</Text>
+        <Pressable onPress={goToSignInPage}>
+          <Text style={{color:'white'}}> Sign In Now!</Text>
+        </Pressable>
+      </Text>
+    </SafeAreaView>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#008C8F",
+  logo: {
+    marginTop: -70,
+    width: 300,
+    height: 300,
+    resizeMode: 'contain',
   },
-  signUp: {
+  signInText: {
+    color: 'white', 
+    fontWeight: "bold",
     fontSize: 30,
-    fontWeight: "600",
-    color: "#FFFFFF",
+    marginStart: 40,
+    marginTop: -70,
   },
-  arrowLeft1: {
-    position: "absolute",
-    left: 15,
-    top: 46,
-    width: 61,
-    height: 56,
-  },
-  icon: {
-    height: "100%",
-  },
-  inputContainer: {
-    width: "80%",
-    marginTop: 20,
-  },
-  input: {
-    height: 40,
-    borderColor: "gray",
-    borderWidth: 1,
-    borderRadius: 10,
-    marginBottom: 10,
-    paddingLeft: 10,
-    backgroundColor: "#FFFFFF",
-  },
-  button: {
-    backgroundColor: "#ffa660",
-    borderRadius: 10,
+  searchBarContainer: {
+    flexDirection: 'row',
+    height: 40, 
     padding: 10,
-    alignItems: "center",
+    backgroundColor: "#323945",
+    borderRadius: 5,
+    margin: 10,
+    paddingHorizontal: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    marginHorizontal: 40, 
+    color: 'white',
   },
-  buttonText: {
-    color: "#FFFFFF",
-    fontSize: 16,
+  signInButton: {
+    flexDirection: 'row',
+    height: 40, 
+    padding: 10,
+    backgroundColor: "#008080",
+    borderRadius: 50,
+    margin: 10,
+    paddingHorizontal: 50,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    marginHorizontal: 40,
   },
-  errorContainer: {
-    position: "absolute",
-    top: 230,
-    width: "100%",
-    alignItems: "center",
-  },
-  errorMessage: {
-    color: "#000",
-    fontSize: FontSize.size_base,
+  signUpButton:{
+    color: 'gray', 
+    flexDirection: 'row', 
+    marginTop: 100, 
+    marginStart: 45,
   },
 });
 

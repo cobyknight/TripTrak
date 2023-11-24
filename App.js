@@ -8,6 +8,7 @@ import HighlandCoffeesPage from './HighlandCoffeesPage';
 import FavoritesPage from './FavoritesPage';
 import ProfilePage from './ProfilePage';
 import SignInPage from './SignInPage';
+import SignUpPage from "./SignUpPage";
 
 const Stack = createStackNavigator();
 function PageNav () {
@@ -16,6 +17,7 @@ function PageNav () {
         <Stack.Screen name="SearchPage" component={SearchPage} options={{ headerShown: false }} />
         <Stack.Screen name="HighlandCoffeesPage" component={HighlandCoffeesPage} options={{ headerShown: false }} />
         <Stack.Screen name="SignInPage" component={SignInPage} options={{ headerShown: false }} />
+        <Stack.Screen name="SignUpPage" component={SignUpPage} options={{ headerShown: false }} />
       </Stack.Navigator>
   );
 }
@@ -25,6 +27,7 @@ function AuthStackNav() {
   return (
     <AuthStack.Navigator initialRouteName="SignInPage" screenOptions={{ headerShown: false }}>
       <AuthStack.Screen name="SignInPage" component={SignInPage} />
+      <AuthStack.Screen name="SignUpPage" component={SignUpPage} />
       <AuthStack.Screen name="SearchPage" component={SearchPage} />
     </AuthStack.Navigator>
   );
@@ -80,7 +83,7 @@ export default function App() {
         setRouteName(currentRouteName);
       }}
     >
-      {routeName === 'SignInPage' ? (
+      {routeName === 'SignInPage' || routeName === 'SignUpPage' ? (
         <AuthStackNav />
       ) : (
         <TabNav routeName={routeName} />

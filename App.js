@@ -3,24 +3,35 @@ import { NavigationContainer, createNavigationContainerRef } from "@react-naviga
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from "@react-navigation/stack";
 import { FontAwesome } from '@expo/vector-icons';
-import SearchPage from './searchpage';
+import SearchPage from './SearchPage';
 import HighlandCoffeesPage from './HighlandCoffeesPage';
-import FavoritesPage from './favoritespage';
-import ProfilePage from './profilepage';
+import FavoritesPage from './FavoritesPage';
+import ProfilePage from './ProfilePage';
 import SignInPage from './SignInPage';
 import SignUpPage from "./SignUpPage";
-import BatonRougeFavorites from "./batonrougefavorites";
+import BatonRougeFavoritesPage from "./BatonRougeFavoritesPage";
 
 const Stack = createStackNavigator();
 function PageNav () {
   return (
-      <Stack.Navigator initialRouteName="SearchPage">
+      <Stack.Navigator initialRouteName="SearchPage" options={{ headerShown: false }} >
         <Stack.Screen name="SearchPage" component={SearchPage} options={{ headerShown: false }} />
         <Stack.Screen name="HighlandCoffeesPage" component={HighlandCoffeesPage} options={{ headerShown: false }} />
+        <Stack.Screen name="BatonRougeFavoritesPage" component={BatonRougeFavoritesPage} options={{headerShown: false}} />
         <Stack.Screen name="SignInPage" component={SignInPage} options={{ headerShown: false }} />
         <Stack.Screen name="SignUpPage" component={SignUpPage} options={{ headerShown: false }} />
-        <Stack.Screen name="BatonRougeFavorites" component={BatonRougeFavorites} options={{headerShown: false}} />
       </Stack.Navigator>
+  );
+}
+
+const FavStack = createStackNavigator();
+function FavStackNav() {
+  return (
+    <FavStack.Navigator initialRouteName="FavoritesPage" screenOptions={{ headerShown: false }} >
+      <FavStack.Screen name="FavoritesPage" component={FavoritesPage} options={{ headerShown: false }} />
+      <FavStack.Screen name="BatonRougeFavoritesPage" component={BatonRougeFavoritesPage} options={{ headerShown: false }} />
+      <FavStack.Screen name="HighlandCoffeesPage" component={HighlandCoffeesPage} options={{ headerShown: false }} />
+    </FavStack.Navigator>
   );
 }
 
@@ -28,9 +39,9 @@ const AuthStack = createStackNavigator();
 function AuthStackNav() {
   return (
     <AuthStack.Navigator initialRouteName="SignInPage" screenOptions={{ headerShown: false }}>
-      <AuthStack.Screen name="SignInPage" component={SignInPage} />
-      <AuthStack.Screen name="SignUpPage" component={SignUpPage} />
-      <AuthStack.Screen name="SearchPage" component={SearchPage} />
+      <AuthStack.Screen name="SignInPage" component={SignInPage} options={{ headerShown: false }} />
+      <AuthStack.Screen name="SignUpPage" component={SignUpPage} options={{ headerShown: false }} />
+      <AuthStack.Screen name="SearchPage" component={SearchPage} options={{ headerShown: false }} />
     </AuthStack.Navigator>
   );
 }
@@ -65,7 +76,7 @@ function TabNav () {
       tabBarOptions={{ activeTintColor: 'tomato', inactiveTintColor: 'gray', }}
       >
         <Tab.Screen name="Home" component={PageNav} options={{ headerShown: false }} />
-        <Tab.Screen name="Favorites" component={FavoritesPage} options={{ headerShown: false } }/>
+        <Tab.Screen name="Favorites" component={FavStackNav} options={{ headerShown: false } }/>
         <Tab.Screen name="Account" component={ProfilePage} options={{ headerShown: false }} />
       </Tab.Navigator>
   );
@@ -85,11 +96,8 @@ export default function App() {
         setRouteName(currentRouteName);
       }}
     >
-      {routeName === 'SignInPage' || routeName === 'SignUpPage' ? (
-        <AuthStackNav />
-      ) : (
-        <TabNav routeName={routeName} />
-      )}
+      {routeName === 'SignInPage' || routeName === 'SignUpPage' ? ( <AuthStackNav /> ) 
+      : ( <TabNav routeName={routeName} /> )}
     </NavigationContainer>
   );
 }

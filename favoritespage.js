@@ -6,7 +6,7 @@ import { FontAwesome } from '@expo/vector-icons'; // Import FontAwesome
 const FavoritesPage = () => {
   const navigation = useNavigation();
   const handleLocationPress = () => {
-    navigation.navigate('BatonRougeFavorites');
+    navigation.navigate('BatonRougeFavoritesPage');
   };
 
   // Move the Favorites component content here

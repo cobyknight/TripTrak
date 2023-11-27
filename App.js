@@ -3,10 +3,10 @@ import { NavigationContainer, createNavigationContainerRef } from "@react-naviga
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from "@react-navigation/stack";
 import { FontAwesome } from '@expo/vector-icons';
-import SearchPage from './SearchPage';
+import SearchPage from './searchpage';
 import HighlandCoffeesPage from './HighlandCoffeesPage';
-import FavoritesPage from './FavoritesPage';
-import ProfilePage from './ProfilePage';
+import FavoritesPage from './favoritespage';
+import ProfilePage from './profilepage';
 import SignInPage from './SignInPage';
 import SignUpPage from "./SignUpPage";
 import BatonRougeFavoritesPage from "./BatonRougeFavoritesPage";

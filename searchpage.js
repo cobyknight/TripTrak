@@ -14,6 +14,12 @@ const SearchPage = () => {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#1a1c21'}}>
+
+      <View style={styles.searchBarContainer}>
+        <FontAwesome name="map-marker" size={20} color="white" style={styles.icon} />
+        <Text style={{ marginHorizontal: 10, color: 'white', fontWeight: 'bold', }}>Current Location: Baton Rouge</Text>
+      </View>
+
       <View style={styles.searchBarContainer}>
         <FontAwesome name="search" size={20} color="white" style={styles.icon} />
         <TextInput style={{ marginHorizontal: 10, color: 'white'}} placeholder="Search Your Destination" placeholderTextColor="gray" />
@@ -169,7 +175,7 @@ const styles = StyleSheet.create({
   },
   scrollBarContainer: {
     padding: 0,
-    marginBottom: 10,
+    marginBottom: 20,
   },
   scrollBox:{
     width: 100,

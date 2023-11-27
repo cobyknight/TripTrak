@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { TouchableWithoutFeedback, Dimensions, FlatList, StyleSheet, View, Text, Image, Pressable, ScrollView, SafeAreaView, Linking } from "react-native";
+import { TouchableOpacity, TouchableWithoutFeedback, Dimensions, FlatList, StyleSheet, View, Text, Image, Pressable, ScrollView, SafeAreaView, Linking } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -98,13 +98,21 @@ const HighlandCoffeesPage = () => {
     Linking.openURL('https://maps.app.goo.gl/F8ASf8UipEDtNiw86');
   }
 
+  const [isPressed, setIsPressed] = useState(false);
+  const handlePress = () => {
+    setIsPressed(!isPressed); // Toggle the state
+  };
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#1a1c21'}}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 10 }}>
         <Pressable onPress={goBackAPage}>
           <FontAwesome name="arrow-left" size={20} color="white" style={{ padding: 10,  }} />
         </Pressable>
-        <FontAwesome name="heart" size={20} color="white" style={{ padding: 10, }} />
+        <TouchableOpacity onPress={handlePress}>
+          <FontAwesome name="heart" size={20} color={isPressed ? 'gray' : 'white'} style={{ padding: 10 }} />
+        </TouchableOpacity>
+        
       </View>
 
       <ScrollView>

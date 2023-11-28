@@ -1,43 +1,38 @@
 import React, { useState } from "react";
-import { ScrollView, TextInput, Image, SafeAreaView, Text, StyleSheet, Pressable } from "react-native";
+import { ScrollView, TextInput, Image, SafeAreaView, Text, StyleSheet, Pressable, View } from "react-native";
 import { useNavigation } from "@react-navigation/native"; // Import useNavigation
 import { FontAwesome } from '@expo/vector-icons'; // Import FontAwesome
-// import { auth } from firbase.js
+import { handleSignIn } from './authService';
 
 const SignInPage = () => {
-  const [email, setEmail] = useState("");
-   const[password, setPassword] = useState("");
+
+  const [signInEmail, setSignInEmail] = useState('');
+  const [signInPassword, setSignInPassword] = useState('');
+  const [message, setMessage] = useState('');
   const navigation = useNavigation();
-  const goToSearchPage = () => {
-    navigation.navigate("SearchPage");
-  };
   const goToSignUpPage = () => {
     navigation.navigate("SignUpPage")
   };
-  const signIn = (e) => {
-    e.preventDefault();
-    signinWithEmailAndPassword(auth, email, password).then((userCredential) => {console.log(userCredential)})
-  }
+  const handleSignInClick = () => {
+    handleSignIn(signInEmail, signInPassword, setMessage);
+  };
 
   return (
-    <div className="Sign-in-container">
-    <form>
-    <input type = "email"
-    value = {email}
-    onChange={(e) => setEmail(e.target.value)}
-    ></input>
-     <input type = "password"
-    value = {password}
-    onChange={(e) => setPassword(e.target.value)}
-    ></input>
     
     <SafeAreaView style={{ flex: 1, backgroundColor: '#1a1c21'}}>
       <ScrollView>
         <Image source={require('./assets/TripTrakLogo.png')} style={styles.logo} />
         <Text style={styles.signInText}>Sign In</Text>
-        <TextInput style={styles.searchBarContainer} placeholder="Email" placeholderTextColor="gray" />
-        <TextInput style={styles.searchBarContainer} placeholder="Password" placeholderTextColor="gray" secureTextEntry={true} />
-        <Pressable style={({ pressed }) => [ styles.signInButton, { backgroundColor: pressed ? "#0089a3" : "#008080", alignSelf: 'center', }, ]} onPress={goToSearchPage} android_ripple={{ color: "#b3b3b3", borderless: true }}>
+        <TextInput style={styles.searchBarContainer} placeholder="Email" placeholderTextColor="gray"
+        value={signInEmail}
+        onChangeText={setSignInEmail}
+        />
+        <TextInput style={styles.searchBarContainer} placeholder="Password" placeholderTextColor="gray"
+        value={signInPassword}
+        secureTextEntry
+        onChangeText={setSignInPassword}
+        />
+        <Pressable style={({ pressed }) => [ styles.signInButton, { backgroundColor: pressed ? "#0089a3" : "#008080", alignSelf: 'center', }, ]} onPress={handleSignInClick} android_ripple={{ color: "#b3b3b3", borderless: true }}>
           <Text style={{color:'white', fontWeight: 'bold', }}>Sign In</Text>
         </Pressable>
         <Text style={styles.signUpButton}>
@@ -46,10 +41,13 @@ const SignInPage = () => {
             <Text style={{color:'white'}}> Sign Up Now!</Text>
           </Pressable>
         </Text>
+
+        <View style={styles.errorContainer}>
+        <Text style={styles.errorMessage}>{message}</Text>
+        </View>
+        
       </ScrollView>
     </SafeAreaView>
-    </form>
-    </div>
   );
 }
 
@@ -109,6 +107,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row', 
     marginTop: 100, 
     marginStart: 45,
+  },
+  errorContainer: {
+    position: "absolute",
+    top: 400,
+    width: "100%",
+    alignItems: "center",
+  },
+  errorMessage: {
+    color: "#fff",
+    fontSize: 16,
   },
 });
 

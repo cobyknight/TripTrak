@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import { TouchableOpacity, TouchableWithoutFeedback, Dimensions, FlatList, StyleSheet, View, Text, Image, Pressable, ScrollView, SafeAreaView, Linking,  Modal, TextInput } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
+import * as ImagePicker from 'expo-image-picker';
+import TripTrakLogo from "./assets/TripTrak_Logo.png";
 
 const HighlandCoffeesPage = () => {
   const navigation = useNavigation();
@@ -103,27 +105,27 @@ const HighlandCoffeesPage = () => {
     setIsPressed(!isPressed); // Toggle the state
   };
 
-  const ViewMapButton = () => (
+  const ViewMapButton = React.memo(() => (
     <View style={styles.buttonContainer}>
       <TouchableOpacity onPress={goToGoogleMaps} style={styles.mapButton}>
         <View style={styles.buttonContent}>
-          <Image source={require('./assets/search.png')} style={styles.buttonIcon} />
+          <FontAwesome name="map" size={30} color="black" />
         </View>
       </TouchableOpacity>
       <Text style={styles.buttonText}>View Map</Text>
     </View>
-  );
-
-  const WebsiteButton = () => (
+  ));
+  
+  const WebsiteButton = React.memo(() => (
     <View style={styles.buttonContainer}>
       <TouchableOpacity onPress={goToWebsite} style={styles.websiteButton}>
         <View style={styles.buttonContent}>
-          <Image source={require('./assets/place.png')} style={styles.buttonIcon} />
+          <FontAwesome name="globe" size={30} color="black" />
         </View>
-        </TouchableOpacity>
-        <Text style={styles.buttonText}>      Website</Text>
+      </TouchableOpacity>
+      <Text style={styles.buttonText}>      Website</Text>
     </View>
-  );
+  ));
 
   const [isReviewModalVisible, setReviewModalVisible] = useState(false);
   const [selectedStars, setSelectedStars] = useState(0);
@@ -149,7 +151,36 @@ const HighlandCoffeesPage = () => {
     { image: require("./assets/icedvanillalatte.jpg"), description: "Iced Vanilla Latte" },
     { image: require("./assets/passionfruittea.jpg"), description: "Passion Fruit Tea" },
   ];
+
+  const [isInfoModalVisible, setInfoModalVisible] = useState(false);
+
+  const toggleInfoModal = () => {
+    setInfoModalVisible(!isInfoModalVisible);
+  };
   
+  const [reviewImages, setReviewImages] = useState([]); // Add this state for managing review images
+
+  const takePhoto = async () => {
+    // Request permission to access the camera
+    const { status } = await ImagePicker.requestCameraPermissionsAsync();
+    if (status !== 'granted') {
+      alert('Sorry, we need camera permissions to make this work!');
+      return;
+    }
+
+    // Open the camera and allow the user to take a photo
+    const result = await ImagePicker.launchCameraAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.cancelled) {
+      // Add the new photo to the reviewImages state
+      setReviewImages([...reviewImages, result.uri]);
+    }
+  };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#1a1c21'}}>
@@ -174,8 +205,38 @@ const HighlandCoffeesPage = () => {
           <FontAwesome name="star" size={20} color="#FFA500" />
           <FontAwesome name="star-half-full" size={20} color="#FFA500" />
           <Text style={styles.review}>4.5 (130 Reviews)      $ ⋅ Cafe </Text>
+          </View>
+
+        <View style={styles.tScoreContainer}>
+          <Text style={styles.tScoreText}>T-score: 1351</Text>
+          <Pressable onPress={toggleInfoModal}>
+            <FontAwesome name="info-circle" size={20} color="gold" style={styles.infoIcon} />
+          </Pressable>
         </View>
       
+      <Modal
+        visible={isInfoModalVisible}
+        transparent={true}
+        animationType="slide"
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContentContainer}>
+            {/* Your modal content goes here */}
+            <TouchableOpacity onPress={toggleInfoModal} style={styles.closeButton}>
+              <FontAwesome name="times" size={30} color="black" />
+            </TouchableOpacity>
+            <Image source={TripTrakLogo} style={styles.tripTrakLogo} />
+            <Text style={styles.modalTitle}>T-Score Information</Text>
+            <Text style={styles.modalText}>
+              Our T-Score is a custom algorithm built to give you only the best restaurants around. 
+              We average the reviews from google, yelp, and our own site to give you a score that 
+              cannot be found anywhere else. This ensures that the restaurant you go to will be one 
+              of the best in the city!
+            </Text>
+          </View>
+        </View>
+      </Modal>
+
       <View style={styles.buttonsContainer}>
         <ViewMapButton />
         <WebsiteButton />
@@ -217,6 +278,7 @@ const HighlandCoffeesPage = () => {
         <FontAwesome name="times" size={30} color="black" />
       </TouchableOpacity>
       <View style={styles.selectedStarsContainer}>
+      <Image source={TripTrakLogo} style={styles.tripTrakLogo} />
         {[1, 2, 3, 4, 5].map((index) => (
           <TouchableOpacity
             key={index}
@@ -238,12 +300,24 @@ const HighlandCoffeesPage = () => {
         multiline={true}
         style={styles.reviewInput}
       />
-      <TouchableOpacity onPress={submitReview} style={styles.submitButton}>
-        <Text style={styles.submitButtonText}>Submit</Text>
-      </TouchableOpacity>
-    </View>
-  </View>
-</Modal>
+          {/* Add camera icon and handle onPress to take a photo */}
+          <View style={styles.cameraAndImageContainer}>
+            <TouchableOpacity onPress={takePhoto} style={styles.cameraButton}>
+              <FontAwesome name="camera" size={30} color="black" />
+            </TouchableOpacity>
+
+            {/* Display review images */}
+            {reviewImages.map((image, index) => (
+              <Image key={index} source={{ uri: image }} style={styles.reviewImage} />
+            ))}
+          </View>
+
+          <TouchableOpacity onPress={submitReview} style={styles.submitButton}>
+            <Text style={styles.submitButtonText}>Submit</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </Modal>
   </View>
 
   <View style={styles.horizontalBar} />
@@ -504,7 +578,8 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     padding: 20,
     width: '90%', // Adjust the width as needed
-    height: 300, // Adjust the height as needed
+    height: 400, // Adjust the height as needed
+    marginBottom: 200,
   },
 
   reviewInput: {
@@ -577,6 +652,51 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 5,
   },
+  tScoreContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 0,
+    marginBottom: 10,
+  },
+  tScoreText: {
+    color: 'white',
+    fontSize: 16,
+    marginLeft: 30,
+    marginRight: 10,
+  },
+  infoIcon: {
+    marginLeft: 5,
+  },
+  modalText: {
+    color: 'black',
+    fontSize: 16,
+    marginTop: 10,
+  },
+  cameraAndImageContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  cameraButton: {
+    marginLeft: 0,
+    marginBottom: 10,
+    marginTop:10,
+  },
+  reviewImage: {
+    width: 50,
+    height: 50,
+    marginVertical: 10,
+    borderRadius: 5,
+    marginLeft: 10,
+  },
+  tripTrakLogo: {
+    width: 50,
+    height: 50,
+    resizeMode: "contain", // Adjust the resizeMode as needed
+    marginBottom: 0,
+    marginRight: 30,
+  },
+
 });
 
 export default HighlandCoffeesPage;

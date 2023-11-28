@@ -1,4 +1,4 @@
-import { getAuth, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword, signOut, sendPasswordResetEmail } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { app as firebaseApp } from './firebase'; // Import the initialized app object
 
 const auth = getAuth(firebaseApp);
@@ -42,18 +42,13 @@ const signOutUser = async () => {
     }
 };
 
-const sendPasswordReset = async (email) => {
-    try {
-      await sendPasswordResetEmail(auth, email);
-      // Password reset email sent successfully
-    } catch (error) {
-      // Handle password reset errors
-      throw error;
-    }
-  };
 
-const handleSignUp = async (email, password, firstName, setMessage) => {
+const handleSignUp = async (email, password, retypePassword, firstName, setMessage) => {
     try {
+        if (password !== retypePassword)
+        {
+            throw new Error('Passwords do not match');
+        }
         await signUp(email, password, firstName);
         setMessage('User signed up successfully');
     } catch (error) {
@@ -79,4 +74,4 @@ const handleSignOut = async (setMessage) => {
     }
 };
 
-export { signUp, signIn, signOutUser, sendPasswordReset, handleSignUp, handleSignIn, handleSignOut };
+export { signUp, signIn, signOutUser, handleSignUp, handleSignIn, handleSignOut };

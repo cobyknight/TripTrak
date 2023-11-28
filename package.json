@@ -31,7 +31,8 @@
     "scrollview": "^0.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.20.0",
+    "http-server": "^14.1.1"
   },
   "private": true
 }

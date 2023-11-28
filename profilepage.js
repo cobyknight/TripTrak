@@ -1,12 +1,43 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { ScrollView, View, Image, SafeAreaView, Text, StyleSheet, Pressable, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native"; // Import useNavigation
 import { FontAwesome } from '@expo/vector-icons'; // Import FontAwesome
+import { handleSignOut, } from "./authService";
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const ProfilePage = () => {
+  const [user, setUser] = useState(null);
+  const [message, setMessage] = useState('');
   const navigation = useNavigation();
-  const tempPressLocation = () => {
-    navigation.navigate("SignInPage");
+  
+  const handleSignOutClick = () => {
+    handleSignOut(setMessage);
+  }
+
+  const handleSignInClick = () => {
+    navigation.navigate('SignInPage');
+  };
+
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (authUser) => {
+      if (authUser) {
+        setUser(authUser);
+      } else {
+        setUser(null);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+  const getFirstName = () => {
+    if (user && user.providerData && user.providerData.length > 0) {
+      const displayName = user.providerData[0].displayName;
+      if (displayName) {
+        const firstName = displayName.split(' ')[0];
+        return firstName;
+      }
+    }
+    return 'user';
   };
 
   return (
@@ -14,7 +45,7 @@ const ProfilePage = () => {
       <ScrollView>
 
         <View style={{flexDirection: 'row'}}>
-          <Text style={styles.title}>Hello, Clarice</Text>
+          <Text style={styles.title}>Hello, {getFirstName()}</Text>
           <Image source={require('./assets/profile_photos/person.png')} style={styles.image} />
         </View>
 
@@ -47,7 +78,11 @@ const ProfilePage = () => {
           </TouchableOpacity>
           <View style={styles.line}/>
 
-          <Pressable style={({ pressed }) => [ styles.signOutButton, { backgroundColor: pressed ? "gray" : "transparent", alignSelf: 'center', }, ]} onPress={tempPressLocation} android_ripple={{ color: "#b3b3b3", borderless: false }}>
+          <Pressable style={({ pressed }) => [ styles.signInButton, { backgroundColor: pressed ? "gray" : "transparent", alignSelf: 'center', }, ]} onPress={handleSignInClick} android_ripple={{ color: "#b3b3b3", borderless: false }}>
+            <Text style={{color:'white', fontWeight: 'bold', }}>Sign In</Text>
+          </Pressable>
+
+          <Pressable style={({ pressed }) => [ styles.signOutButton, { backgroundColor: pressed ? "gray" : "transparent", alignSelf: 'center', }, ]} onPress={handleSignOutClick} android_ripple={{ color: "#b3b3b3", borderless: false }}>
             <Text style={{color:'white', fontWeight: 'bold', }}>Sign Out</Text>
           </Pressable>
         </View>
@@ -72,11 +107,29 @@ const styles = StyleSheet.create({
     width: 70,
     height: 70,
     borderRadius: 70/2,
-     
+  },
+  signInButton: {
+    flexDirection: 'column',
+    height: 40, 
+    padding: 8,
+    backgroundColor: "#008080",
+    borderRadius: 50,
+    margin: 10,
+    paddingHorizontal: 120,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    borderWidth: 1,        
+    borderColor: 'white',
   },
     signOutButton: {
     flexDirection: 'column',
-    height: 40, 
+    height: 60,
     padding: 8,
     backgroundColor: "#008080",
     borderRadius: 50,

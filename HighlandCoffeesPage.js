@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { TouchableOpacity, TouchableWithoutFeedback, Dimensions, FlatList, StyleSheet, View, Text, Image, Pressable, ScrollView, SafeAreaView, Linking } from "react-native";
+import { TouchableOpacity, TouchableWithoutFeedback, Dimensions, FlatList, StyleSheet, View, Text, Image, Pressable, ScrollView, SafeAreaView, Linking,  Modal, TextInput } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -103,6 +103,54 @@ const HighlandCoffeesPage = () => {
     setIsPressed(!isPressed); // Toggle the state
   };
 
+  const ViewMapButton = () => (
+    <View style={styles.buttonContainer}>
+      <TouchableOpacity onPress={goToGoogleMaps} style={styles.mapButton}>
+        <View style={styles.buttonContent}>
+          <Image source={require('./assets/search.png')} style={styles.buttonIcon} />
+        </View>
+      </TouchableOpacity>
+      <Text style={styles.buttonText}>View Map</Text>
+    </View>
+  );
+
+  const WebsiteButton = () => (
+    <View style={styles.buttonContainer}>
+      <TouchableOpacity onPress={goToWebsite} style={styles.websiteButton}>
+        <View style={styles.buttonContent}>
+          <Image source={require('./assets/place.png')} style={styles.buttonIcon} />
+        </View>
+        </TouchableOpacity>
+        <Text style={styles.buttonText}>      Website</Text>
+    </View>
+  );
+
+  const [isReviewModalVisible, setReviewModalVisible] = useState(false);
+  const [selectedStars, setSelectedStars] = useState(0);
+  const [reviewText, setReviewText] = useState("");
+
+  const toggleReviewModal = () => {
+    setReviewModalVisible(!isReviewModalVisible);
+  };
+
+  const submitReview = () => {
+    // Add logic to handle the submission of the review (e.g., send to a server)
+    // You can use `selectedStars` and `reviewText` to send the data
+    // Reset the state and close the modal after submission
+    setSelectedStars(0);
+    setReviewText("");
+    toggleReviewModal();
+  };
+
+  const localsFavorites = [
+    { image: require("./assets/coldbrew.jpg"), description: "Cold Brew Coffee" },
+    { image: require("./assets/espresso.jpg"), description: "Espresso" },
+    { image: require("./assets/greentea.jpg"), description: "Green Tea" },
+    { image: require("./assets/icedvanillalatte.jpg"), description: "Iced Vanilla Latte" },
+    { image: require("./assets/passionfruittea.jpg"), description: "Passion Fruit Tea" },
+  ];
+  
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#1a1c21'}}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 10 }}>
@@ -125,19 +173,97 @@ const HighlandCoffeesPage = () => {
           <FontAwesome name="star" size={20} color="#FFA500" />
           <FontAwesome name="star" size={20} color="#FFA500" />
           <FontAwesome name="star-half-full" size={20} color="#FFA500" />
-          <Text style={styles.review}>4.5 (130 Reviews) </Text>
+          <Text style={styles.review}>4.5 (130 Reviews)      $ ⋅ Cafe </Text>
         </View>
+      
+      <View style={styles.buttonsContainer}>
+        <ViewMapButton />
+        <WebsiteButton />
+      </View>
+      
+<View style={styles.horizontalBar} />
 
-        <Text style={styles.priceAndType}>$ ⋅ Cafe</Text>
-        
-        <Text style={styles.otherTitles}>About</Text>
-        <TouchableWithoutFeedback onPress={expandAbout}>
-          <Text numberOfLines={isAboutExpanded ? 0 : 2} style={styles.about}>Specialty coffee shop serving delicious coffee and pasteries at the gates of LSU since 1989 with coffee roasting in-shop and lots of seating inside and in the courtyard.</Text>
-        </TouchableWithoutFeedback>
-        <Text style={styles.other} onPress={goToWebsite}>Visit Website</Text>
+<View style={styles.reviewSection}>
+  <Text style={styles.leaveReviewText}>Leave a review!</Text>
+  <View style={styles.starContainer}>
+    {[1, 2, 3, 4, 5].map((index) => (
+      <TouchableOpacity
+        key={index}
+        onPress={() => {
+        setSelectedStars(index);
+        toggleReviewModal();
+        }}
+        style={styles.starButton}
+      >
+        {index <= selectedStars ? (
+          <FontAwesome name="star" size={30} color="gold" />
+        ) : (
+          <FontAwesome name="star-o" size={30} color="gold" />
+        )}
+      </TouchableOpacity>
+    ))}
+  </View>
 
-        <Text style={styles.otherTitles}>Address</Text>
-        <Text style={styles.other} onPress={goToGoogleMaps}>3350 Highland Road{'\n'}Baton Rouge, LA</Text>
+  {/* Add the review modal */}
+  <Modal
+  visible={isReviewModalVisible}
+  transparent={true}
+  animationType="slide"
+>
+  <View style={styles.modalContainer}>
+    <View style={styles.modalContentContainer}>
+      {/* Your modal content goes here */}
+      <TouchableOpacity onPress={toggleReviewModal} style={styles.closeButton}>
+        <FontAwesome name="times" size={30} color="black" />
+      </TouchableOpacity>
+      <View style={styles.selectedStarsContainer}>
+        {[1, 2, 3, 4, 5].map((index) => (
+          <TouchableOpacity
+            key={index}
+            onPress={() => setSelectedStars(index)}
+            style={styles.starButton}
+          >
+            {index <= selectedStars ? (
+              <FontAwesome name="star" size={30} color="gold" />
+            ) : (
+              <FontAwesome name="star-o" size={30} color="gold" />
+            )}
+          </TouchableOpacity>
+        ))}
+      </View>
+      <TextInput
+        value={reviewText}
+        onChangeText={(text) => setReviewText(text)}
+        placeholder="Write your review here..."
+        multiline={true}
+        style={styles.reviewInput}
+      />
+      <TouchableOpacity onPress={submitReview} style={styles.submitButton}>
+        <Text style={styles.submitButtonText}>Submit</Text>
+      </TouchableOpacity>
+    </View>
+  </View>
+</Modal>
+  </View>
+
+  <View style={styles.horizontalBar} />
+
+  <View>
+  <Text style={styles.otherTitles}>Locals Favorites!</Text>
+  <ScrollView
+    horizontal={true}
+    showsHorizontalScrollIndicator={false}
+    contentContainerStyle={styles.localsFavoritesContainer}
+  >
+    {localsFavorites.map((item, index) => (
+      <View key={index} style={styles.localsFavoriteItem}>
+        <Image source={item.image} style={styles.localsFavoriteImage} />
+        <Text style={styles.localsFavoriteText}>{item.description}</Text>
+      </View>
+    ))}
+  </ScrollView>
+</View>
+
 
         <Text style={styles.otherTitles}>Reviews</Text>
         <View style={styles.line} />
@@ -213,22 +339,22 @@ const HighlandCoffeesPage = () => {
 const styles = StyleSheet.create({
   title: {
     color: 'white',
-    textAlign: "center",
     fontSize: 30,
     fontWeight: "bold",
     marginVertical: 5,
+    marginLeft: 30,
   },
   otherTitles: {
     color: 'white',
-    textAlign: "center",
     fontSize: 20,
     fontWeight: "bold",
     marginTop: 10,
+    marginLeft: 30,
   },
   reviewTop :{
     flexDirection: 'row', 
-    justifyContent: 'center',
-    marginVertical: 15,
+    marginVertical: 10,
+    marginLeft: 30,
   },
   review: {
     color: 'white',
@@ -245,16 +371,16 @@ const styles = StyleSheet.create({
   },
   priceAndType: {
     color: 'white',
-    textAlign: "center",
     fontSize: 15,
-    top: -10,
+    marginVertical: 10,
+    marginLeft: 290,
   },
   other: {
     marginHorizontal: 10,
     color: 'white',
-    textAlign: "center",
     fontSize: 15,
     marginVertical: 5,
+    marginLeft: 30,
     fontStyle: 'italic',
     textDecorationLine: 'underline',
 
@@ -303,7 +429,154 @@ const styles = StyleSheet.create({
   locationText: {
     color: 'white',
   },
-  
+  mapButton: {
+    backgroundColor: 'white',
+    borderRadius: 50,
+    padding: 8,
+    marginVertical: 5,
+    marginRight: 20,
+    alignItems: 'center',
+  },
+  websiteButton: {
+    backgroundColor: 'white',
+    borderRadius: 50,
+    padding: 8,
+    marginVertical: 5,
+    marginLeft: 20,
+    alignItems: 'center',
+  },
+  buttonContent: {
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  buttonIcon: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+  },
+  buttonText: {
+    color: 'white',
+    marginTop: 5,
+    fontSize: 12,
+  },
+  buttonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginVertical: 10,
+  },
+  reviewSection: {
+    marginVertical: 15,
+    marginLeft:30
+  },
+  leaveReviewText: {
+    color: "white",
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 30,
+    marginRight: 170,
+  },
+  starContainer: {
+    flexDirection: "row",
+    marginVertical: 10,
+  },
+  starButton: {
+    marginHorizontal: 5,
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.7)",
+  },
+  closeButton: {
+    position: "absolute",
+    top: 10,
+    right: 10,
+  },
+  modalTitle: {
+    color: "white",
+    fontSize: 25,
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+  modalContentContainer: {
+    backgroundColor: "white",
+    borderRadius: 15,
+    padding: 20,
+    width: '90%', // Adjust the width as needed
+    height: 300, // Adjust the height as needed
+  },
+
+  reviewInput: {
+    height: 150,
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 10,
+    marginTop: 15,
+    padding: 10,
+    width: '100%', // Adjust the width as needed
+  },
+  submitButton: {
+    backgroundColor: "white",
+    padding: 10,
+    borderRadius: 5,
+  },
+  submitButtonText: {
+    color: "black",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+   selectedStarsText: {
+    color: "white",
+    fontSize: 25,
+    fontWeight: "bold",
+    marginTop: 10,
+  },
+  selectedStarsContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginVertical: 15,
+  },
+  starButton: {
+    marginRight: 5,
+  },
+  otherTitles: {
+    color: 'white',
+    fontSize: 20,
+    fontWeight: "bold",
+    marginTop: 10,
+    marginLeft: 30,
+  },
+
+  localsFavoritesContainer: {
+    alignItems: 'center',
+    marginTop: 10,
+    marginLeft: 20,
+  },
+
+  horizontalBar: {
+    height: 1,
+    width: '100%',
+    backgroundColor: 'gray',
+    marginVertical: 15,
+  },
+
+  localsFavoriteItem: {
+    marginRight: 10,
+    alignItems: 'center',
+  },
+
+  localsFavoriteImage: {
+    width: 120,
+    height: 120,
+    borderRadius: 10,
+  },
+
+  localsFavoriteText: {
+    color: 'white',
+    textAlign: 'center',
+    marginTop: 5,
+  },
 });
 
 export default HighlandCoffeesPage;

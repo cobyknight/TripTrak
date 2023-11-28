@@ -3,10 +3,15 @@ import { NavigationContainer, createNavigationContainerRef } from "@react-naviga
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from "@react-navigation/stack";
 import { FontAwesome } from '@expo/vector-icons';
-import SearchPage from './searchpage';
+import SearchPage from './SearchPage';
 import HighlandCoffeesPage from './HighlandCoffeesPage';
-import FavoritesPage from './favoritespage';
-import ProfilePage from './profilepage';
+import CitySlicePage from './CitySlicePage';
+import OliveOrTwistPage from './OliveOrTwistPage';
+import RoulsDeliPage from './RoulsDeliPage';
+import TheChimesPage from './TheChimesPage';
+import TioJavisPage from './TioJavisPage';
+import FavoritesPage from './FavoritesPage';
+import ProfilePage from './ProfilePage';
 import SignInPage from './SignInPage';
 import SignUpPage from "./SignUpPage";
 import BatonRougeFavoritesPage from "./BatonRougeFavoritesPage";
@@ -17,6 +22,11 @@ function PageNav () {
       <Stack.Navigator initialRouteName="SearchPage" options={{ headerShown: false }} >
         <Stack.Screen name="SearchPage" component={SearchPage} options={{ headerShown: false }} />
         <Stack.Screen name="HighlandCoffeesPage" component={HighlandCoffeesPage} options={{ headerShown: false }} />
+        <Stack.Screen name="CitySlicePage" component={CitySlicePage} options={{ headerShown: false }} />
+        <Stack.Screen name="OliveOrTwistPage" component={OliveOrTwistPage} options={{ headerShown: false }} />
+        <Stack.Screen name="RoulsDeliPage" component={RoulsDeliPage} options={{ headerShown: false }} />
+        <Stack.Screen name="TheChimesPage" component={TheChimesPage} options={{ headerShown: false }} />
+        <Stack.Screen name="TioJavisPage" component={TioJavisPage} options={{ headerShown: false }} />
         <Stack.Screen name="BatonRougeFavoritesPage" component={BatonRougeFavoritesPage} options={{headerShown: false}} />
         <Stack.Screen name="SignInPage" component={SignInPage} options={{ headerShown: false }} />
         <Stack.Screen name="SignUpPage" component={SignUpPage} options={{ headerShown: false }} />
@@ -30,7 +40,12 @@ function FavStackNav() {
     <FavStack.Navigator initialRouteName="FavoritesPage" screenOptions={{ headerShown: false }} >
       <FavStack.Screen name="FavoritesPage" component={FavoritesPage} options={{ headerShown: false }} />
       <FavStack.Screen name="BatonRougeFavoritesPage" component={BatonRougeFavoritesPage} options={{ headerShown: false }} />
-      <FavStack.Screen name="HighlandCoffeesPage" component={HighlandCoffeesPage} options={{ headerShown: false }} />
+      <Stack.Screen name="HighlandCoffeesPage" component={HighlandCoffeesPage} options={{ headerShown: false }} />
+        <Stack.Screen name="CitySlicePage" component={CitySlicePage} options={{ headerShown: false }} />
+        <Stack.Screen name="OliveOrTwistPage" component={OliveOrTwistPage} options={{ headerShown: false }} />
+        <Stack.Screen name="RoulsDeliPage" component={RoulsDeliPage} options={{ headerShown: false }} />
+        <Stack.Screen name="TheChimesPage" component={TheChimesPage} options={{ headerShown: false }} />
+        <Stack.Screen name="TioJavisPage" component={TioJavisPage} options={{ headerShown: false }} />
     </FavStack.Navigator>
   );
 }

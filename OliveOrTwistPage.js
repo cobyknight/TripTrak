@@ -3,7 +3,7 @@ import { TouchableOpacity, TouchableWithoutFeedback, Dimensions, FlatList, Style
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
 
-const RoulsDeliPage = () => {
+const OliveOrTwistPage = () => {
   const navigation = useNavigation();
   const goBackAPage = () => {
     navigation.goBack("SearchPage");
@@ -306,4 +306,4 @@ const styles = StyleSheet.create({
   
 });
 
-export default RoulsDeliPage;
+export default OliveOrTwistPage;

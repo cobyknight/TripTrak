@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { ScrollView, TextInput, Image, SafeAreaView, Text, StyleSheet, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native"; // Import useNavigation
 import { FontAwesome } from '@expo/vector-icons'; // Import FontAwesome
+// import { auth } from firbase.js
 
 const SignInPage = () => {
+  const [email, setEmail] = useState("");
+   const[password, setPassword] = useState("");
   const navigation = useNavigation();
   const goToSearchPage = () => {
     navigation.navigate("SearchPage");
@@ -11,8 +14,23 @@ const SignInPage = () => {
   const goToSignUpPage = () => {
     navigation.navigate("SignUpPage")
   };
+  const signIn = (e) => {
+    e.preventDefault();
+    signinWithEmailAndPassword(auth, email, password).then((userCredential) => {console.log(userCredential)})
+  }
 
   return (
+    <div className="Sign-in-container">
+    <form>
+    <input type = "email"
+    value = {email}
+    onChange={(e) => setEmail(e.target.value)}
+    ></input>
+     <input type = "password"
+    value = {password}
+    onChange={(e) => setPassword(e.target.value)}
+    ></input>
+    
     <SafeAreaView style={{ flex: 1, backgroundColor: '#1a1c21'}}>
       <ScrollView>
         <Image source={require('./assets/TripTrakLogo.png')} style={styles.logo} />
@@ -30,6 +48,8 @@ const SignInPage = () => {
         </Text>
       </ScrollView>
     </SafeAreaView>
+    </form>
+    </div>
   );
 }
 

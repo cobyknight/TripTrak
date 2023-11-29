@@ -16,8 +16,8 @@ import SignInPage from './SignInPage';
 import SignUpPage from "./SignUpPage";
 import BatonRougeFavoritesPage from "./BatonRougeFavoritesPage";
 import NotificationsPage from "./NotificationsPage";
-
-
+import PrivacyPage from "./PrivacyPage";
+import SettingPage from "./SettingPage";
 
 
 const Stack = createStackNavigator();
@@ -35,6 +35,8 @@ function PageNav () {
         <Stack.Screen name="SignInPage" component={SignInPage} options={{ headerShown: false }} />
         <Stack.Screen name="SignUpPage" component={SignUpPage} options={{ headerShown: false }} />
         <Stack.Screen name="NotificationsPage" component={NotificationsPage} options={{ headerShown: false }}/>
+        <Stack.Screen name="PrivacyPage" component={PrivacyPage} options={{ headerShown: false }}/>
+        <Stack.Screen name="SettingPage" component={SettingPage} options={{ headerShown: false }}/>
       </Stack.Navigator>
   );
 }

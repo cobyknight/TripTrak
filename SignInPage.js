@@ -15,6 +15,7 @@ const SignInPage = () => {
   };
   const handleSignInClick = () => {
     handleSignIn(signInEmail, signInPassword, setMessage);
+    navigation.navigate("ProfilePage")
   };
 
   return (

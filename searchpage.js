@@ -173,8 +173,8 @@ const styles = StyleSheet.create({
     top: -1,
   },
   icon1: {
-    top: -185,
-    left: 300,
+    marginTop: -180,
+    marginStart: 300,
   },
   searchBarContainer: {
     flexDirection: 'row',

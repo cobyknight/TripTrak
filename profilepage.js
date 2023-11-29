@@ -46,44 +46,36 @@ const ProfilePage = () => {
 
         <View style={{flexDirection: 'row'}}>
           <Text style={styles.title}>Hello, {getFirstName()}</Text>
-          <Image source={require('./assets/profile_photos/user.png')} style={styles.image} />
+          <Image source={require('./assets/profile_photos/person.png')} style={styles.image} />
         </View>
-
         <View style={{flexDirection:'column', marginTop: 100,}}>
-          <TouchableOpacity style={styles.menuItem} onPress={() => {}}>
-            <FontAwesome name={"history"} size={30} color={'white'} style={{marginStart: 50, marginRight: -30,}} />
-            <Text style={styles.menuText}>History</Text>
-            <FontAwesome name={"arrow-right"} size={20} color={'white'} style={{marginStart: 150}}/>
-          </TouchableOpacity>
-          <View style={styles.line}/>
 
-          <TouchableOpacity style={styles.menuItem} onPress={() => {}}>
+          <View style={styles.line}/>
+          <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('NotificationsPage')}>
             <FontAwesome name={"envelope"} size={30} color={'white'} style={{marginStart: 50, marginRight: -30,}} />
             <Text style={styles.menuText}>Notifications</Text>
-            <FontAwesome name={"arrow-right"} size={20} color={'white'} style={{marginStart: 86}}/>
           </TouchableOpacity>
-          <View style={styles.line}/>
 
-          <TouchableOpacity style={styles.menuItem} onPress={() => {}}>
+          <View style={styles.line}/>
+          <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('PrivacyPage')}>
             <FontAwesome name={"shield"} size={30} color={'white'} style={{marginStart: 54, marginRight: -26,}} />
             <Text style={styles.menuText}>Privacy</Text>
-            <FontAwesome name={"arrow-right"} size={20} color={'white'} style={{marginStart: 143}}/>
           </TouchableOpacity>
-          <View style={styles.line}/>
 
-          <TouchableOpacity style={styles.menuItem} onPress={() => {}}>
+          <View style={styles.line}/>
+          <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('SettingPage')}>
             <FontAwesome name={"gear"} size={30} color={'white'} style={{marginStart: 54, marginRight: -32,}} />
             <Text style={styles.menuText}>Settings</Text>
-            <FontAwesome name={"arrow-right"} size={20} color={'white'} style={{marginStart: 134}}/>
           </TouchableOpacity>
+
           <View style={styles.line}/>
 
           <Pressable style={({ pressed }) => [ styles.signInButton, { backgroundColor: pressed ? "gray" : "transparent", alignSelf: 'center', }, ]} onPress={handleSignInClick} android_ripple={{ color: "#b3b3b3", borderless: false }}>
-            <Text style={{color:'white', fontWeight: 'bold', }}>Sign Out</Text>
+            <Text style={{color:'white', fontWeight: 'bold', }}>Sign In</Text>
           </Pressable>
 
           <Pressable style={({ pressed }) => [ styles.signOutButton, { backgroundColor: pressed ? "gray" : "transparent", alignSelf: 'center', }, ]} onPress={handleSignOutClick} android_ripple={{ color: "#b3b3b3", borderless: false }}>
-            <Text style={{color:'white', fontWeight: 'bold', }}>Sign In</Text>
+            <Text style={{color:'white', fontWeight: 'bold', }}>Sign Out</Text>
           </Pressable>
         </View>
       </ScrollView>
@@ -129,7 +121,7 @@ const styles = StyleSheet.create({
   },
     signOutButton: {
     flexDirection: 'column',
-    height: 60,
+    height: 40,
     padding: 8,
     backgroundColor: "#008080",
     borderRadius: 50,

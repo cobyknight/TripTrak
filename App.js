@@ -3,21 +3,21 @@ import { NavigationContainer, createNavigationContainerRef } from "@react-naviga
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from "@react-navigation/stack";
 import { FontAwesome } from '@expo/vector-icons';
-import SearchPage from './searchpage';
+import SearchPage from './SearchPage';
 import HighlandCoffeesPage from './HighlandCoffeesPage';
 import CitySlicePage from './CitySlicePage';
 import OliveOrTwistPage from './OliveOrTwistPage';
 import RoulsDeliPage from './RoulsDeliPage';
 import TheChimesPage from './TheChimesPage';
 import TioJavisPage from './TioJavisPage';
-import FavoritesPage from './favoritespage';
+import FavoritesPage from './FavoritesPage';
 import ProfilePage from './profilepage';
 import SignInPage from './SignInPage';
 import SignUpPage from "./SignUpPage";
 import BatonRougeFavoritesPage from "./BatonRougeFavoritesPage";
 import NotificationsPage from "./NotificationsPage";
-
-
+import PrivacyPage from "./PrivacyPage";
+import SettingPage from "./SettingPage";
 
 
 const Stack = createStackNavigator();
@@ -35,6 +35,8 @@ function PageNav () {
         <Stack.Screen name="SignInPage" component={SignInPage} options={{ headerShown: false }} />
         <Stack.Screen name="SignUpPage" component={SignUpPage} options={{ headerShown: false }} />
         <Stack.Screen name="NotificationsPage" component={NotificationsPage} options={{ headerShown: false }}/>
+        <Stack.Screen name="PrivacyPage" component={PrivacyPage} options={{ headerShown: false }}/>
+        <Stack.Screen name="SettingPage" component={SettingPage} options={{ headerShown: false }}/>
       </Stack.Navigator>
   );
 }
@@ -52,6 +54,18 @@ function FavStackNav() {
         <Stack.Screen name="TheChimesPage" component={TheChimesPage} options={{ headerShown: false }} />
         <Stack.Screen name="TioJavisPage" component={TioJavisPage} options={{ headerShown: false }} />
     </FavStack.Navigator>
+  );
+}
+
+const ProfStack = createStackNavigator();
+function ProfStackNav() {
+  return (
+    <ProfStack.Navigator initialRouteName="ProfilePage" screenOptions={{ headerShown: false }} >
+      <ProfStack.Screen name="ProfilePage" component={ProfilePage} options={{ headerShown: false }} />
+      <ProfStack.Screen name="NotificationsPage" component={NotificationsPage} options={{ headerShown: false }} />
+      <ProfStack.Screen name="PrivacyPage" component={PrivacyPage} options={{ headerShown: false }} />
+      <ProfStack.Screen name="SettingPage" component={SettingPage} options={{ headerShown: false }} />
+    </ProfStack.Navigator>
   );
 }
 

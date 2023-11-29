@@ -26,7 +26,7 @@ const SearchPage = () => {
   const navigation = useNavigation();
   const goToLocation = (index) => {
     const selectedLocation = filteredLocations[index];
-    const screenToNavigate = selectedLocation.goTo || "SearchPage"; // Default to a screen named "DefaultScreen" if goTo is not specified
+    const screenToNavigate = selectedLocation.goTo || "SearchPage"; // Default to a screen named "SearchPage" if goTo is not specified
     navigation.navigate(screenToNavigate);
   };
 
@@ -38,7 +38,6 @@ const SearchPage = () => {
       price: "$",
       category: "Cafe",
       goTo: "HighlandCoffeesPage",
-      icon: "heart",
     },
     {
       name: "Roul's Deli",
@@ -47,7 +46,6 @@ const SearchPage = () => {
       price: "$",
       category: "Burger",
       goTo: "RoulsDeliPage",
-      icon: "heart",
     },
     {
       name: "The Chimes",
@@ -56,7 +54,6 @@ const SearchPage = () => {
       price: "$$",
       category: ["Cajun", " | ", "Dining"],
       goTo: "TheChimesPage",
-      icon: "heart-o",
     },
     {
       name: "City Slice Pizza and Pints",
@@ -65,7 +62,6 @@ const SearchPage = () => {
       price: "$$$",
       category: ["Pizza", " | ", "Dining", " | ", "Bar"],
       goTo: "CitySlicePage",
-      icon: "heart-o",
     },
     {
       name: "Tio Javi's Fresh Mex Bar & Grill",
@@ -74,7 +70,6 @@ const SearchPage = () => {
       price: "$$",
       category: ["Mexican"," | ", "Dining", " | ", "Bar"],
       goTo: "TioJavisPage",
-      icon: "heart",
     },
     {
       name: "Olive or Twist",
@@ -83,7 +78,6 @@ const SearchPage = () => {
       price: "$$",
       category: ["Dining"," | ", "Bar"],
       goTo: "OliveOrTwistPage",
-      icon: "heart-o",
     },
   ];
 
@@ -150,17 +144,6 @@ const SearchPage = () => {
               <Text style={{ color: '#008080' }}> {location.price}</Text>
               <Text style={{color: 'white'}}> ⋅ {location.category}</Text>
             </Text>
-            <FontAwesome name={location.icon} size={30} color="white" style={styles.icon1} />
-            {/* Conditionally render ranking for the first 3 places */}
-            {
-              // index < 3 && (
-              //<Text style={styles.ranking}>
-                //<Text style={{ color: index === 0 ? 'gold' : index === 1 ? 'silver' : 'brown', fontSize: 30, }}>
-                 // {index + 1}
-                //</Text>
-              //</Text>
-            //)
-            }
           </Pressable>
         ))}
       </ScrollView>
@@ -194,7 +177,6 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   scrollBarContainer: {
-    padding: 0,
     marginBottom: 20,
   },
   scrollBox:{
@@ -204,6 +186,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginVertical: 10,
     marginHorizontal: 5,
+    marginStart: 8,
     justifyContent: "center",
     shadowColor: "#000",
     shadowOffset: {
@@ -220,12 +203,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   contentContainer: {
+    
     alignItems: "center",
-  },
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
   },
   box: {
     width: "90%",

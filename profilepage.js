@@ -46,7 +46,7 @@ const ProfilePage = () => {
 
         <View style={{flexDirection: 'row'}}>
           <Text style={styles.title}>Hello, {getFirstName()}</Text>
-          <Image source={require('./assets/profile_photos/person.png')} style={styles.image} />
+          <Image source={require('./assets/profile_photos/user.png')} style={styles.image} />
         </View>
         <View style={{flexDirection:'column', marginTop: 100,}}>
 

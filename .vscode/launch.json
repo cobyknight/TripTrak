@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": ".",
-      "program": "build/Debug/outDebug",
+      "cwd": "c:/Users/Chris/AppData/Local/Temp/621acf64-4d61-48c8-84ba-f2b37507bbd2_4103Notes.zip.bd2/prog3",
+      "program": "c:/Users/Chris/AppData/Local/Temp/621acf64-4d61-48c8-84ba-f2b37507bbd2_4103Notes.zip.bd2/prog3/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

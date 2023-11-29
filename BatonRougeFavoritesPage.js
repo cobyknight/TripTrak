@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, Image, Pressable, ScrollView, TextInput, SafeAr
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
 
+// Component for a category button with onPress handler
 const CategoryButton = ({ category, selectedCategory, onPress }) => (
   <Pressable
     style={({ pressed }) => [styles.scrollBox, { backgroundColor: pressed ? "#4b5669" : "#323945" }]}
@@ -17,72 +18,57 @@ const CategoryButton = ({ category, selectedCategory, onPress }) => (
 
 const SearchPage = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
+
+  // Function to handle category press
   const handleCategoryPress = (category) => {
     // If the selected category is pressed again, reset the filter
     setSelectedCategory(selectedCategory === category ? null : category);
   };
   
-
   const navigation = useNavigation();
+
+  // Function to navigate to a selected location
   const goToLocation = (index) => {
     const selectedLocation = filteredLocations[index];
     const screenToNavigate = selectedLocation.goTo || "SearchPage"; // Default to a screen named "DefaultScreen" if goTo is not specified
     navigation.navigate(screenToNavigate);
   };
 
-   const locations = [
-    {
-      name: "Highland Coffees",
-      image: require("./assets/places/highland_coffees.png"),
-      rating: 4.5,
-      price: "$",
-      category: "Cafe",
-      goTo: "HighlandCoffeesPage",
-      icon: "heart",
-    },
-    {
-      name: "Roul's Deli",
-      image: require("./assets/places/rouls_deli.png"),
-      rating: 4.4,
-      price: "$",
-      category: "Burger",
-      goTo: "RoulsDeliPage",
-      icon: "heart",
-    },
-    {
-      name: "Tio Javi's Fresh Mex Bar & Grill",
-      image: require("./assets/places/tio_javis.png"),
-      rating: 4.2,
-      price: "$$",
-      category: ["Mexican"," | ", "Dining", " | ", "Bar"],
-      goTo: "TioJavisPage",
-      icon: "heart",
-    },
+  const locations = [
+    // Sample location data
+    // ...
   ];
 
+  // Filtering locations based on the selected category
   const filteredLocations = locations.filter((location) => {
-  if (!location.category) {
-    return selectedCategory === null; // If no category is specified, include in all cases
-  }
+    if (!location.category) {
+      return selectedCategory === null; // If no category is specified, include in all cases
+    }
 
-  // If location has a single category
-  if (typeof location.category === 'string') {
-    return selectedCategory === null || location.category === selectedCategory;
-  }
+    // If location has a single category
+    if (typeof location.category === 'string') {
+      return selectedCategory === null || location.category === selectedCategory;
+    }
 
-  // If location has multiple categories
-  return selectedCategory === null || location.category.includes(selectedCategory);
-});
+    // If location has multiple categories
+    return selectedCategory === null || location.category.includes(selectedCategory);
+  });
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#1a1c21'}}>
 
+      {/* Header */}
       <Text style={styles.header}>Favorites: Baton Rouge</Text>
 
+      {/* Scrollable content container */}
       <ScrollView contentContainerStyle={styles.contentContainer}>
+        {/* Displaying filtered locations */}
         {filteredLocations.map((location, index) => (
           <Pressable key={index} style={({ pressed }) => [styles.box, { backgroundColor: pressed ? "#4b5669" : "#323945" }]} onPress={() => goToLocation(index)} android_ripple={{ color: "#b3b3b3", borderless: true }} >
+            {/* Location image */}
             <Image source={location.image} style={styles.boxImage} />
+
+            {/* Location details */}
             <Text style={styles.boxText}>
               <Text style={{ color: 'white' }}>{location.name}</Text>{'\n'}
               <Text style={{ color: 'white', fontSize: 4, }}> </Text>{'\n'}
@@ -92,7 +78,10 @@ const SearchPage = () => {
               <Text style={{ color: '#008080' }}> {location.price}</Text>
               <Text style={{color: 'white'}}> ⋅ {location.category}</Text>
             </Text>
+
+            {/* Heart icon */}
             <FontAwesome name={location.icon} size={30} color="white" style={styles.icon1} />
+
             {/* Conditionally render ranking for the first 3 places */}
             {
               // index < 3 && (
@@ -110,6 +99,7 @@ const SearchPage = () => {
   );
 };
 
+// Styles for the component
 const styles = StyleSheet.create({
   icon: {
     top: -1,

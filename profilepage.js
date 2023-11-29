@@ -79,11 +79,11 @@ const ProfilePage = () => {
           <View style={styles.line}/>
 
           <Pressable style={({ pressed }) => [ styles.signInButton, { backgroundColor: pressed ? "gray" : "transparent", alignSelf: 'center', }, ]} onPress={handleSignInClick} android_ripple={{ color: "#b3b3b3", borderless: false }}>
-            <Text style={{color:'white', fontWeight: 'bold', }}>Sign In</Text>
+            <Text style={{color:'white', fontWeight: 'bold', }}>Sign Out</Text>
           </Pressable>
 
           <Pressable style={({ pressed }) => [ styles.signOutButton, { backgroundColor: pressed ? "gray" : "transparent", alignSelf: 'center', }, ]} onPress={handleSignOutClick} android_ripple={{ color: "#b3b3b3", borderless: false }}>
-            <Text style={{color:'white', fontWeight: 'bold', }}>Sign Out</Text>
+            <Text style={{color:'white', fontWeight: 'bold', }}>Sign In</Text>
           </Pressable>
         </View>
       </ScrollView>

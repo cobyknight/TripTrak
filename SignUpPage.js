@@ -13,9 +13,6 @@ const SignUpPage = () => {
   const [firstName, setFirstName] = useState("");
   const [message, setMessage] = useState('');
 
-  // const goToProfilePage = () => {
-  //   navigation.navigate("ProfilePage");
-  // };
   const goToSignInPage = () => {
     navigation.navigate("SignInPage")
   };
@@ -26,13 +23,6 @@ const SignUpPage = () => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#1a1c21'}}>
         <ScrollView>
-          {/* <Pressable style={styles.arrowLeft1} onPress={goToProfilePage}>
-            <Image
-              style={[styles.icon, styles.iconLayout]}
-              resizeMode="cover"
-              source={require("./assets/left_arrow.png")}
-            />
-          </Pressable> */}
           <Image source={require('./assets/TripTrakLogo.png')} style={styles.logo} />
           <Text style={styles.signInText}>Sign Up</Text>
           <TextInput style={styles.searchBarContainer} placeholder="Email" placeholderTextColor="gray"
@@ -73,17 +63,6 @@ const SignUpPage = () => {
 }
 
 const styles = StyleSheet.create({
-  // arrowLeft1: {
-  //   marginLeft: 5,
-  //   marginTop: 5,
-  //   width: 60,
-  //   height: 60,
-  //   position: "abosolute",
-  //   zIndex: 1,
-  // },
-  // icon: {
-  //   height: "100%",
-  // },
   logo: {
     marginTop: -70,
     width: 300,
